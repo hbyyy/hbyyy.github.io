@@ -197,7 +197,7 @@
               <span class="post-meta-item-text">작성일</span>
               
 
-              <time title="Post created: 2020-02-11 22:33:39 / Updated at: 22:38:51" itemprop="dateCreated datePublished" datetime="2020-02-11T22:33:39+09:00">2020-02-11</time>
+              <time title="Post created: 2020-02-11 22:33:39 / Updated at: 22:40:01" itemprop="dateCreated datePublished" datetime="2020-02-11T22:33:39+09:00">2020-02-11</time>
             </span>
 
           
@@ -278,25 +278,19 @@
 <li><p><code>cls</code>는 클래스 자체를 의미한다</p>
 </li>
 <li><p>클래스 매서드는 클래스 속성에 대해 동작한다</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Gen</span>:</span></span><br><span class="line">    description : <span class="string">'++number++'</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.number = <span class="number">0</span></span><br><span class="line">    <span class="comment"># 인스턴스 매서드</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">plus_number</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.number += <span class="number">1</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">#클래스 매서드는 @classmethod 데코레이터를 사용한다</span></span><br><span class="line">    <span class="comment">#Gen의 클래스 속성인 description을 출력한다</span></span><br><span class="line"><span class="meta">    @classmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">print_desc</span><span class="params">(cls)</span>:</span></span><br><span class="line">        print(cls.description)</span><br><span class="line">        </span><br><span class="line"><span class="comment">#사용 예시, 클래스 자체를 사용</span></span><br><span class="line">Gen.print_desc()</span><br></pre></td></tr></table></figure>
 </li>
-<li><pre><code class="python"><span class="class"><span class="keyword">class</span> <span class="title">Gen</span>:</span>
-    description : <span class="string">'++number++'</span>
-    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span>
-        self.number = <span class="number">0</span>
-    <span class="comment"># 인스턴스 매서드</span>
-    <span class="function"><span class="keyword">def</span> <span class="title">plus_number</span><span class="params">(self)</span>:</span>
-        self.number += <span class="number">1</span>
+</ul>
+</li>
+<li><p>정적 매서드</p>
+<ul>
+<li><p>클래스 내부에 정의된 일반 함수이다</p>
+</li>
+<li><p>클래스나 인스턴스를 통해 접근 가능</p>
+</li>
+<li><p>클래스나 인스턴스에 영향을 줄 수 없다</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Gen</span>:</span></span><br><span class="line">    description : <span class="string">'++number++'</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, number)</span>:</span></span><br><span class="line">        self.number = number</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 정적 매서드는 @staticmethod 데코레이터를 사용한다</span></span><br><span class="line">    <span class="comment"># 1 - 100 범위의 임의의 수로 Gen 클래스의 인스턴스를 생성</span></span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">plus_gen</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> Gen(random.randint(<span class="number">1</span>, <span class="number">100</span>)</span><br></pre></td></tr></table></figure>
 
-    <span class="comment">#클래스 매서드는 @classmethod 데코레이터를 사용한다</span>
-    <span class="comment">#Gen의 클래스 속성인 description을 출력한다</span>
-<span class="meta">    @classmethod</span>
-    <span class="function"><span class="keyword">def</span> <span class="title">print_desc</span><span class="params">(cls)</span>:</span>
-        print(cls.description)
-
-<span class="comment">#사용 예시, 클래스 자체를 사용</span>
-Gen.print_desc()
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">3. 정적 매서드</span><br><span class="line"></span><br><span class="line">   - 클래스 내부에 정의된 일반 함수이다</span><br><span class="line"></span><br><span class="line">   - 클래스나 인스턴스를 통해 접근 가능</span><br><span class="line"></span><br><span class="line">   - 클래스나 인스턴스에 영향을 줄 수 없다</span><br><span class="line"></span><br><span class="line">   - &#96;&#96;&#96;python</span><br><span class="line">     import random</span><br><span class="line">     </span><br><span class="line">     </span><br><span class="line">     class Gen:</span><br><span class="line">         description : &#39;++number++&#39;</span><br><span class="line">         def __init__(self, number):</span><br><span class="line">             self.number &#x3D; number</span><br><span class="line">         </span><br><span class="line">         # 정적 매서드는 @staticmethod 데코레이터를 사용한다</span><br><span class="line">         # 1 - 100 범위의 임의의 수로 Gen 클래스의 인스턴스를 생성</span><br><span class="line">         @staticmethod</span><br><span class="line">         def plus_gen(self):</span><br><span class="line">             return Gen(random.randint(1, 100)</span><br></pre></td></tr></table></figure>
-</code></pre>
 </li>
 </ul>
 </li>
