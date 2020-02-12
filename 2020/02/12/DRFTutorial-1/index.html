@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://hbyyy.github.io').hostname,
+    root: '/',
+    scheme: 'Mist',
+    version: '7.7.1',
+    exturl: false,
+    sidebar: {"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="Django 는 REST API 를 만들 수 있는 Django REST Framework(DRF) 가 존재한다. Django는 기본적으로 풀스택 프레임워크로 동작하지만, DRF를 사용한다면 클라이언트와 분리된 완전한 백엔드 프레임워크로 동작하게만들 수 있다.   Django는 백엔드에서 실제로 HTML 코드를 만들어 클라이언트에 전달해주는 동작으로 서비스">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Django Rest Framework Tutorial (1)">
+<meta property="og:url" content="https://hbyyy.github.io/2020/02/12/DRFTutorial-1/index.html">
+<meta property="og:site_name" content="hbyyy&#39;s blog">
+<meta property="og:description" content="Django 는 REST API 를 만들 수 있는 Django REST Framework(DRF) 가 존재한다. Django는 기본적으로 풀스택 프레임워크로 동작하지만, DRF를 사용한다면 클라이언트와 분리된 완전한 백엔드 프레임워크로 동작하게만들 수 있다.   Django는 백엔드에서 실제로 HTML 코드를 만들어 클라이언트에 전달해주는 동작으로 서비스">
+<meta property="og:locale" content="ko_KR">
+<meta property="article:published_time" content="2020-02-12T14:41:06.000Z">
+<meta property="article:modified_time" content="2020-02-12T14:53:00.935Z">
+<meta property="article:author" content="BeonYeong Heo">
+<meta property="article:tag" content="Django">
+<meta property="article:tag" content="Django REST Framework">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://hbyyy.github.io/2020/02/12/DRFTutorial-1/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>Django Rest Framework Tutorial (1) | hbyyy's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">hbyyy's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>홈</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>태그<span class="badge">3</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>카테고리<span class="badge">2</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>아카이브<span class="badge">2</span></a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/hbyyy" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://hbyyy.github.io/2020/02/12/DRFTutorial-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/20190120_184606.jpg">
+      <meta itemprop="name" content="BeonYeong Heo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="hbyyy's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Django Rest Framework Tutorial (1)
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-02-12 23:41:06 / Updated at: 23:53:00" itemprop="dateCreated datePublished" datetime="2020-02-12T23:41:06+09:00">2020-02-12</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Django-REST-Framework/" itemprop="url" rel="index">
+                    <span itemprop="name">Django REST Framework</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <blockquote>
+<p>Django 는 REST API 를 만들 수 있는 <strong>Django REST Framework(DRF)</strong> 가 존재한다. Django는 기본적으로 풀스택 프레임워크로 동작하지만, <strong>DRF</strong>를 사용한다면 클라이언트와 분리된 완전한 백엔드 프레임워크로 동작하게<br>만들 수 있다.  </p>
+<p>Django는 백엔드에서 실제로 HTML 코드를 만들어 클라이언트에 전달해주는 동작으로 서비스를 구현한다. 하지만, DRF는 직렬화한 데이터(주로 JSON 형식이 많이 쓰인다) 를 클라이언트에 보내주는 역할을 한다.</p>
+<p>이 포스트에서는 <a href="https://www.django-rest-framework.org/tutorial/1-serialization/" target="_blank" rel="noopener">Django REST Framework tutorial</a> 을 따라가며 한글로 번역하고, 기본적인 DRF의 사용법을 정리할 것이다.</p>
+</blockquote>
+<p>들어가기에 앞서, 이 튜토리얼은 간단한 코드 하이라이팅 웹 API를 구현하는 식으로 진행된다.</p>
+<h2 id="프로젝트-설정"><a href="#프로젝트-설정" class="headerlink" title="프로젝트 설정"></a>프로젝트 설정</h2><p>프로젝트를 만들기 전에, 먼저 가상환경을 설정해준다. </p>
+<a id="more"></a>
+<p><code>pyenv</code> 를 이용한 설정</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pyenv virtualenv 3.7.5 drf-tutorial-env</span><br><span class="line">pyenv local drf-tutorial-env</span><br></pre></td></tr></table></figure>
+
+<p>다음으로, 필요한 패키지들을 설치해 준다.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pip install django</span><br><span class="line">pip install djangorestframework</span><br><span class="line">pip install pygments			# 코드 하이라이팅을 위한 패키지</span><br></pre></td></tr></table></figure>
+
+
+<p>필요한 패키지 설치 후, Django Project를 생성하고, app을 만들어 준다. </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">django-admin startproject tutorial	# 프로젝트 생성</span><br><span class="line">cd tutorial</span><br><span class="line">./manage.py startapp snippets		# app 생성</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong><code>tutorial/settings.py</code></strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">INSTALLED_APPS = [</span><br><span class="line">    <span class="string">'rest_framework'</span>,</span><br><span class="line">    <span class="string">'snippets.apps.SnippetsConfig'</span>,</span><br><span class="line">    ...,</span><br><span class="line">    ...,</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+
+
+
+<h3 id="Snippet-모델-구현"><a href="#Snippet-모델-구현" class="headerlink" title="Snippet 모델 구현"></a>Snippet 모델 구현</h3><p>Snippet 모델에는 created, title, code, linenos, language, style 6가지 필드가 존재한다.</p>
+<p>튜토리얼에서는 코드 하이라이팅 기능을 구현하기 위해 pygmens 패키지를 사용한다.</p>
+<p><strong><code>snippets/models.py</code></strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.db <span class="keyword">import</span> models</span><br><span class="line"><span class="keyword">from</span> pygments.lexers <span class="keyword">import</span> get_all_lexers</span><br><span class="line"><span class="keyword">from</span> pygments.styles <span class="keyword">import</span> get_all_styles</span><br><span class="line"></span><br><span class="line"><span class="comment"># pygments에서 지원하는 모든 언어 정보를 가져온다.</span></span><br><span class="line">LEXERS = [item <span class="keyword">for</span> item <span class="keyword">in</span> get_all_lexers() <span class="keyword">if</span> item[<span class="number">1</span>]]</span><br><span class="line">LANGUAGE_CHOICES = sorted([(item[<span class="number">1</span>][<span class="number">0</span>], item[<span class="number">0</span>]) <span class="keyword">for</span> item <span class="keyword">in</span> LEXERS])</span><br><span class="line"><span class="comment"># pygments에서 지원하는 모든 코드 스타일들을 가져온다.</span></span><br><span class="line">STYLE_CHOICES = sorted([(item, item) <span class="keyword">for</span> item <span class="keyword">in</span> get_all_styles()])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Snippet</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    created = models.DateTimeField(auto_now_add=<span class="literal">True</span>)</span><br><span class="line">    title = models.CharField(max_length=<span class="number">100</span>, blank=<span class="literal">True</span>, default=<span class="string">''</span>)</span><br><span class="line">    code = models.TextField()</span><br><span class="line">    linenos = models.BooleanField(default=<span class="literal">False</span>)</span><br><span class="line">    language = models.CharField(choices=LANGUAGE_CHOICES, default=<span class="string">'python'</span>, max_length=<span class="number">100</span>)</span><br><span class="line">    style = models.CharField(choices=STYLE_CHOICES, default=<span class="string">'friendly'</span>, max_length=<span class="number">100</span>)</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">        ordering = [<span class="string">'created'</span>]</span><br></pre></td></tr></table></figure>
+
+<p>모델 구현 후에는 <em>makemigrations</em>, <em>migrate</em> 를 진행해 주자.</p>
+<h3 id="Serializer-구현"><a href="#Serializer-구현" class="headerlink" title="Serializer 구현"></a>Serializer 구현</h3><p><strong>serializer</strong> 는 DRF의 핵심이다. serializer는 파이썬 클래스 인스턴스 형식의 데이터(snippet)를 직렬화하여 JSON 같은 데이터 형식으로 표현해 주거나, 반대로 JSON 같은 데이터 형식의 데이터를 파이썬 클래스 인스턴스 형식의 데이터로 역 직렬화 해주는 역할을 한다.</p>
+<p>  <strong>serializer</strong>  의 구현은  django form과 비슷한 면이 있다. 다음의 코드를 보자</p>
+<ul>
+<li>serializer.py 파일을 만들어 준다.</li>
+</ul>
+<p><strong><code>snippets/serializer.py</code></strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> rest_framework <span class="keyword">import</span> serializers</span><br><span class="line"><span class="keyword">from</span> snippets.models <span class="keyword">import</span> Snippet, LANGUAGE_CHOICES, STYLE_CHOICES</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SnippetSerializer</span><span class="params">(serializers.Serializer)</span>:</span></span><br><span class="line">    id = serializers.IntegerField(read_only=<span class="literal">True</span>)</span><br><span class="line">    title = serializers.CharField(required=<span class="literal">False</span>, allow_blank=<span class="literal">True</span>, max_length=<span class="number">100</span>)</span><br><span class="line">    code = serializers.CharField(required=<span class="literal">True</span>, style=&#123;<span class="string">'base_template'</span>: <span class="string">'textarea.html'</span>&#125;)</span><br><span class="line">    linenos = serializers.BooleanField(required=<span class="literal">False</span>)</span><br><span class="line">    language = serializers.ChoiceField(choices=LANGUAGE_CHOICES, default=<span class="string">'python'</span>)</span><br><span class="line">    style = serializers.ChoiceField(choices=STYLE_CHOICES, default=<span class="string">'friendly'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">create</span><span class="params">(self, validated_data)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        validation을 통과한 validated_data로 새로운 snippet instance 를 생성힌디.</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="keyword">return</span> Snippet.objects.create(**validated_data)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">update</span><span class="params">(self, instance, validated_data)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        validation을 통과한 validated_data로 이미 존재하는 snippet instance를 변경한다.</span></span><br><span class="line"><span class="string">        변경을 요청하지 않은 데이터는 기존 instance의 데이터를 넣는다.</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        instance.title = validated_data.get(<span class="string">'title'</span>, instance.title)</span><br><span class="line">        instance.code = validated_data.get(<span class="string">'code'</span>, instance.code)</span><br><span class="line">        instance.linenos = validated_data.get(<span class="string">'linenos'</span>, instance.linenos)</span><br><span class="line">        instance.language = validated_data.get(<span class="string">'language'</span>, instance.language)</span><br><span class="line">        instance.style = validated_data.get(<span class="string">'style'</span>, instance.style)</span><br><span class="line">        instance.save()</span><br><span class="line">        <span class="keyword">return</span> instance</span><br></pre></td></tr></table></figure>
+
+<p>첫번째로, 직렬화와 역 직렬화를 하는 필드들을 정의해준다. 필드들은 form과 같이 필드를 정의할 때 <strong>default</strong>, <strong>read_only</strong> 등등의 <strong>validation flag</strong>를 포함해 선언한다.</p>
+<p><strong>style</strong> flag 는 django form의 widget처럼 HTML로 렌더링 하는 방법을 설정해 줄 수 있다.  </p>
+<ul>
+<li>필드들의 자세한 정보는 <a href="https://www.django-rest-framework.org/api-guide/fields/" target="_blank" rel="noopener">여기</a>를 참조하자. </li>
+</ul>
+<p>다음으로, <strong><code>create()</code></strong>, <strong><code>update()</code></strong> 메소드는 <strong><code>serializer.save()</code></strong> 를 실행할 때 동작할 코드들을 정의해 주는 것이다.</p>
+<h3 id="Serialization-Deserialization-테스트"><a href="#Serialization-Deserialization-테스트" class="headerlink" title="Serialization, Deserialization 테스트"></a>Serialization, Deserialization 테스트</h3><p>이제 지금까지 구현한 Snippet model과  Serializer를 이용하여 직렬화, 역 직렬화를 테스트 해보자.</p>
+<ol>
+<li>Serialization</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> snippets.models <span class="keyword">import</span> Snippet</span><br><span class="line"><span class="keyword">from</span> snippets.serializers <span class="keyword">import</span> SnippetSerializer</span><br><span class="line"><span class="keyword">from</span> rest_framework.renderers <span class="keyword">import</span> JSONRenderer</span><br><span class="line"><span class="keyword">from</span> rest_framework.parsers <span class="keyword">import</span> JSONParser</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">snippet = Snippet.objects.create(code=<span class="string">'foo = "bar"\n'</span>)                   </span><br><span class="line">snippet = Snippet.objects.create(code=<span class="string">'print("Hello world!")\n'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># serializer를 만들고 생성한 snippet instance를 넣어준다.</span></span><br><span class="line"><span class="comment"># serializer가 snippet instance를 python dictionary 형태로 변환해 준다.</span></span><br><span class="line">serializer = SnippetSerializer(snippet)                                 </span><br><span class="line">serializer.data                                                         </span><br><span class="line"><span class="comment"># &#123;'id': 3, 'title': '', 'code': 'print("Hello world!")\n', 'linenos': False, 'language': 'python', 'style': 'friendly'&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># python 데이터 형태를 JSON으로 변환</span></span><br><span class="line">content = JSONRenderer().render(serializer.data)</span><br><span class="line">content                                                                 </span><br><span class="line"><span class="comment"># b'&#123;"id":3,"title":"","code":"print(\\"Hello world!\\")\\n","linenos":false,"language":"python","style":"friendly"&#125;'</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>Deserialization</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> io</span><br><span class="line"></span><br><span class="line"><span class="comment"># 데이터 스트림을 파이썬 기본 데이터 형으로 변환해 준다.</span></span><br><span class="line">stream = io.BytesIO(content)</span><br><span class="line">data = JSONParser().parse(stream)</span><br><span class="line">data</span><br><span class="line"><span class="comment"># &#123;'id': 3, 'title': '', 'code': 'print("Hello world!")\n', 'linenos': False, 'language': 'python', 'style': 'friendly'&#125;</span></span><br><span class="line"></span><br><span class="line">serializer = SnippetSerializer(data=data)</span><br><span class="line">serializer.is_valid()</span><br><span class="line"><span class="comment"># True</span></span><br><span class="line">serializer.validated_data</span><br><span class="line"><span class="comment"># OrderedDict([('title', ''),</span></span><br><span class="line"><span class="comment">#             ('code', 'print("Hello world!")'),</span></span><br><span class="line"><span class="comment">#             ('linenos', False),</span></span><br><span class="line"><span class="comment">#             ('language', 'python'),</span></span><br><span class="line"><span class="comment">#             ('style', 'friendly')])</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># serializer 정의 시에 정의해 준 동작 실행 (create)</span></span><br><span class="line">serializer.save()</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>serializer에 queryset을 넣어 줄 수도 있다. 이 경우 <code>many=True</code> 옵션을 지정해 주어야 한다.</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">serializer = SnippetSerializer(Snippet.objects.all(), many=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="ModelSerializers-사용"><a href="#ModelSerializers-사용" class="headerlink" title="ModelSerializers 사용"></a>ModelSerializers 사용</h3><p>Django의 ModelForm처럼, Serializer도 ModelSerializers를 사용할 수 있다 이것을 사용한다면 훨씬 간편하게 serializer를 만들 수 있다.</p>
+<p><strong><code>snippets/serializer.py</code></strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SnippetSerializer</span><span class="params">(serializers.ModelSerializer)</span>:</span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">        model = Snippet</span><br><span class="line">        fields = [<span class="string">'id'</span>, <span class="string">'title'</span>, <span class="string">'code'</span>, <span class="string">'linenos'</span>, <span class="string">'language'</span>, <span class="string">'style'</span>]</span><br></pre></td></tr></table></figure>
+
+<p>간단하게 serializer 가 구현되었다. create()와 update()같은 메소드들은 기본적으로 구현이 되어 있다.</p>
+<p>ModelSerializer의 구현 내용은 다음과 같이 확인할 수 있다.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">serializer = SnippetSerializer()                                         </span><br><span class="line">print(repr(serializer))                                                        </span><br><span class="line"><span class="comment"># SnippetSerializer():</span></span><br><span class="line"><span class="comment">#    id = IntegerField(read_only=True)</span></span><br><span class="line"><span class="comment">#    title = CharField(allow_blank=True, max_length=100, required=False)</span></span><br><span class="line"><span class="comment">#    code = CharField(required=True, style=&#123;'base_template': 'textarea.html'&#125;)</span></span><br><span class="line"><span class="comment">#    linenos = BooleanField(required=False)</span></span><br><span class="line"><span class="comment">#    language = ChoiceField(choices=[</span></span><br><span class="line"><span class="comment">#    .....</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Django/" rel="tag"># Django</a>
+              <a href="/tags/Django-REST-Framework/" rel="tag"># Django REST Framework</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/02/11/python-class/" rel="prev" title="Python - Class 정리">
+      <i class="fa fa-chevron-left"></i> Python - Class 정리
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          목차
+        </li>
+        <li class="sidebar-nav-overview">
+          흝어보기
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#프로젝트-설정"><span class="nav-number">1.</span> <span class="nav-text">프로젝트 설정</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Snippet-모델-구현"><span class="nav-number">1.1.</span> <span class="nav-text">Snippet 모델 구현</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Serializer-구현"><span class="nav-number">1.2.</span> <span class="nav-text">Serializer 구현</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Serialization-Deserialization-테스트"><span class="nav-number">1.3.</span> <span class="nav-text">Serialization, Deserialization 테스트</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ModelSerializers-사용"><span class="nav-number">1.4.</span> <span class="nav-text">ModelSerializers 사용</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="BeonYeong Heo"
+      src="/uploads/20190120_184606.jpg">
+  <p class="site-author-name" itemprop="name">BeonYeong Heo</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-name">포스트</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">카테고리</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">태그</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hbyyy" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hbyyy" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:qjaduddl94@gmail.com" title="E-Mail → mailto:qjaduddl94@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">BeonYeong Heo</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.7.1
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
