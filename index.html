@@ -178,7 +178,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="https://hbyyy.github.io/2020/02/14/OS-process%EA%B5%AC%EC%A1%B0/">
+    <link itemprop="mainEntityOfPage" href="https://hbyyy.github.io/2020/02/16/OS-%EC%BB%A8%ED%85%8D%EC%8A%A4%ED%8A%B8%EC%8A%A4%EC%9C%84%EC%B9%AD/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/uploads/20190120_184606.jpg">
@@ -192,7 +192,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2020/02/14/OS-process%EA%B5%AC%EC%A1%B0/" class="post-title-link" itemprop="url">OS - 프로세스 구조</a>
+            <a href="/2020/02/16/OS-%EC%BB%A8%ED%85%8D%EC%8A%A4%ED%8A%B8%EC%8A%A4%EC%9C%84%EC%B9%AD/" class="post-title-link" itemprop="url">OS - 컨텍스트 스위칭</a>
         </h1>
 
         <div class="post-meta">
@@ -203,7 +203,7 @@
               <span class="post-meta-item-text">작성일</span>
               
 
-              <time title="Post created: 2020-02-14 01:50:51 / Updated at: 01:54:18" itemprop="dateCreated datePublished" datetime="2020-02-14T01:50:51+09:00">2020-02-14</time>
+              <time title="Post created: 2020-02-16 03:07:06 / Updated at: 03:09:39" itemprop="dateCreated datePublished" datetime="2020-02-16T03:07:06+09:00">2020-02-16</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -228,10 +228,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="OS-프로세스의-구조"><a href="#OS-프로세스의-구조" class="headerlink" title="OS - 프로세스의 구조"></a>OS - 프로세스의 구조</h2><h3 id="프로세스란"><a href="#프로세스란" class="headerlink" title="프로세스란?"></a>프로세스란?</h3><p>프로세스란 간단히 정리하면 <strong>실행 중인 프로그램</strong> 이라고 할 수 있습니다. <strong>프로그램</strong>은 실행 하기 전에는 보조 기억 장치(SSD나 HDD)에 저장되어 실행을 기다리고 있는데,  이 프로그램이 실행을 요청받아 메모리에 적재된다면 프로세스가 됩니다.</p>
+          <h3 id="컨텍스트-스위칭이란"><a href="#컨텍스트-스위칭이란" class="headerlink" title="컨텍스트 스위칭이란"></a>컨텍스트 스위칭이란</h3><p> 운영체제의 스케줄러는 자원의 낭비를 최소화하기 위해 여러 프로세스를 계속해서 번갈아가며 실행하는 멀티프로그래밍 방식으로 프로세스를 실행한다.</p>
+<p>프로세스 A, B가 실행 중이라고 가정해보자. A 프로세스가 running  상태이고, B 프로세스가 ready 상태일 때, 스케줄러가  A 프로세서에서 B 프로세서로 실행하는 프로세스를 바꾸는 것이 <strong>컨텍스트 스위칭</strong> 이다.</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/02/14/OS-process%EA%B5%AC%EC%A1%B0/#more" rel="contents">
+              <a class="btn" href="/2020/02/16/OS-%EC%BB%A8%ED%85%8D%EC%8A%A4%ED%8A%B8%EC%8A%A4%EC%9C%84%EC%B9%AD/#more" rel="contents">
                 더 읽어보기 &raquo;
               </a>
             </div>
@@ -255,7 +256,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="https://hbyyy.github.io/2020/02/14/%EA%B5%AC%EC%A1%B0/">
+    <link itemprop="mainEntityOfPage" href="https://hbyyy.github.io/2020/02/14/OS-process%EA%B5%AC%EC%A1%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/uploads/20190120_184606.jpg">
@@ -269,7 +270,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2020/02/14/%EA%B5%AC%EC%A1%B0/" class="post-title-link" itemprop="url">구조</a>
+            <a href="/2020/02/14/OS-process%EA%B5%AC%EC%A1%B0/" class="post-title-link" itemprop="url">OS - 프로세스 구조</a>
         </h1>
 
         <div class="post-meta">
@@ -279,7 +280,25 @@
               </span>
               <span class="post-meta-item-text">작성일</span>
 
-              <time title="Post created: 2020-02-14 01:50:44" itemprop="dateCreated datePublished" datetime="2020-02-14T01:50:44+09:00">2020-02-14</time>
+              <time title="Post created: 2020-02-14 01:50:51" itemprop="dateCreated datePublished" datetime="2020-02-14T01:50:51+09:00">2020-02-14</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-02-16 03:10:27" itemprop="dateModified" datetime="2020-02-16T03:10:27+09:00">2020-02-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/OS/" itemprop="url" rel="index">
+                    <span itemprop="name">OS</span>
+                  </a>
+                </span>
             </span>
 
           
@@ -293,7 +312,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          
+          <h3 id="프로세스란"><a href="#프로세스란" class="headerlink" title="프로세스란?"></a>프로세스란?</h3><p>프로세스란 간단히 정리하면 <strong>실행 중인 프로그램</strong> 이라고 할 수 있습니다. <strong>프로그램</strong>은 실행 하기 전에는 보조 기억 장치(SSD나 HDD)에 저장되어 실행을 기다리고 있는데,  이 프로그램이 실행을 요청받아 메모리에 적재된다면 프로세스가 됩니다.</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/02/14/OS-process%EA%B5%AC%EC%A1%B0/#more" rel="contents">
+                더 읽어보기 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
