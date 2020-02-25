@@ -54,7 +54,7 @@
 <meta property="og:description" content="해쉬 테이블용어 해쉬(hash) : 임의 값을 고정 길이로 변환하는 것 해쉬 테이블(hash table): 키 값의 연산에 의해 직접 접근이 가능한 테이터 구조 해싱 함수(hashing function) : key에 대해 산술 연산을 이용해 데이터 위치를 찾을 수 있는 함수 해쉬 값(hash value) 또는 해쉬 주소(hash address) : key를">
 <meta property="og:locale" content="ko_KR">
 <meta property="article:published_time" content="2020-02-25T18:29:24.000Z">
-<meta property="article:modified_time" content="2020-02-25T18:34:41.341Z">
+<meta property="article:modified_time" content="2020-02-25T18:35:30.869Z">
 <meta property="article:author" content="BeonYeong Heo">
 <meta property="article:tag" content="자료구조">
 <meta name="twitter:card" content="summary">
@@ -207,7 +207,7 @@
               <span class="post-meta-item-text">작성일</span>
               
 
-              <time title="Post created: 2020-02-26 03:29:24 / Updated at: 03:34:41" itemprop="dateCreated datePublished" datetime="2020-02-26T03:29:24+09:00">2020-02-26</time>
+              <time title="Post created: 2020-02-26 03:29:24 / Updated at: 03:35:30" itemprop="dateCreated datePublished" datetime="2020-02-26T03:29:24+09:00">2020-02-26</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -248,9 +248,6 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hash_func</span><span class="params">(key)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> key % <span class="number">5</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#ord() -&gt; 문자의 아스키 코드 리턴</span></span><br><span class="line"><span class="comment"># 해쉬 테이블에 데이터를 저장</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">storage_data</span><span class="params">(data, value)</span>:</span></span><br><span class="line">    key = ord(data[<span class="number">0</span>])</span><br><span class="line">    hash_address = hash_func(key)</span><br><span class="line">    hash_table[hash_address] = value</span><br><span class="line"></span><br><span class="line"><span class="comment">#해쉬 테이블에서 해당 데이터의 값을 가져온다</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_data</span><span class="params">(data)</span>:</span></span><br><span class="line">    key = ord(data[<span class="number">0</span>])</span><br><span class="line">    hash_address = hash_func(key)</span><br><span class="line">    <span class="keyword">return</span> hash_table[hash_address]</span><br><span class="line">    </span><br><span class="line">data1 = <span class="string">'Andy'</span></span><br><span class="line">data2 = <span class="string">'Dave'</span></span><br><span class="line">data3 = <span class="string">'Trump'</span></span><br><span class="line"></span><br><span class="line">storage_data(<span class="string">'Andy'</span>, <span class="string">'01055553333'</span>)</span><br><span class="line">storage_data(<span class="string">'Dave'</span>, <span class="string">'01012341234'</span>)</span><br><span class="line">storage_data(<span class="string">'Trump'</span>, <span class="string">'01009876543'</span>)</span><br><span class="line"></span><br><span class="line">get_data(<span class="string">'Andy'</span>)</span><br><span class="line"><span class="comment"># '01055553333'</span></span><br></pre></td></tr></table></figure>
 
 
-
-
-
 <h3 id="해쉬-테이블의-장단점"><a href="#해쉬-테이블의-장단점" class="headerlink" title="해쉬 테이블의 장단점"></a>해쉬 테이블의 장단점</h3><ul>
 <li>장점<ul>
 <li>데이터 저장/읽기 속도가 빠르다</li>
@@ -270,13 +267,11 @@
 <p>다른 data 가 값은 해쉬 값을 가지는 것을 충돌이라 한다.</p>
 </blockquote>
 <h4 id="Chaining-기법"><a href="#Chaining-기법" class="headerlink" title="Chaining 기법"></a>Chaining 기법</h4><ul>
-<li><p>해쉬 테이블 외의 저장공간을 이용</p>
-<ul>
+<li>해쉬 테이블 외의 저장공간을 이용<ul>
 <li><strong>개방 해싱(Open hashing)</strong> 기법</li>
 </ul>
 </li>
-<li><p>충돌이 일어나면, 링크드 리스트로 데이터를 뒤에 연결함</p>
-</li>
+<li>충돌이 일어나면, 링크드 리스트로 데이터를 뒤에 연결함</li>
 </ul>
 <h4 id="Linear-Probing-기법"><a href="#Linear-Probing-기법" class="headerlink" title="Linear Probing 기법"></a>Linear Probing 기법</h4><ul>
 <li>해쉬 테이블 내의 저장공간을 이용<ul>
