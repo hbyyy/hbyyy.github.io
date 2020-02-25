@@ -203,7 +203,7 @@
               <span class="post-meta-item-text">작성일</span>
               
 
-              <time title="Post created: 2020-02-26 03:29:24 / Updated at: 03:31:03" itemprop="dateCreated datePublished" datetime="2020-02-26T03:29:24+09:00">2020-02-26</time>
+              <time title="Post created: 2020-02-26 03:29:24 / Updated at: 03:34:41" itemprop="dateCreated datePublished" datetime="2020-02-26T03:29:24+09:00">2020-02-26</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -233,58 +233,15 @@
 <li>해쉬 테이블(hash table): 키 값의 연산에 의해 직접 접근이 가능한 테이터 구조</li>
 <li>해싱 함수(hashing function) : key에 대해 산술 연산을 이용해 데이터 위치를 찾을 수 있는 함수</li>
 <li>해쉬 값(hash value) 또는 해쉬 주소(hash address) : key를 해싱 함수로 연산한 값, 이 값의 위치에 해당 key에 대한 값을 저장한다</li>
-<li>슬롯(slot) : 한 개의 데이터를 저장할 수 있는 공간<!--name-->
-
-
-</li>
-</ul>
-<h3 id="예시"><a href="#예시" class="headerlink" title="예시"></a>예시</h3><h4 id="해쉬-테이블-만들기"><a href="#해쉬-테이블-만들기" class="headerlink" title="해쉬 테이블 만들기"></a>해쉬 테이블 만들기</h4><ol>
-<li>간단한 해시 함수 (Division 이용)</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hash_func</span><span class="params">(key)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> key % <span class="number">5</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#ord() -&gt; 문자의 아스키 코드 리턴</span></span><br><span class="line"><span class="comment"># 해쉬 테이블에 데이터를 저장</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">storage_data</span><span class="params">(data, value)</span>:</span></span><br><span class="line">    key = ord(data[<span class="number">0</span>])</span><br><span class="line">    hash_address = hash_func(key)</span><br><span class="line">    hash_table[hash_address] = value</span><br><span class="line"></span><br><span class="line"><span class="comment">#해쉬 테이블에서 해당 데이터의 값을 가져온다</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_data</span><span class="params">(data)</span>:</span></span><br><span class="line">    key = ord(data[<span class="number">0</span>])</span><br><span class="line">    hash_address = hash_func(key)</span><br><span class="line">    <span class="keyword">return</span> hash_table[hash_address]</span><br><span class="line">    </span><br><span class="line">data1 = <span class="string">'Andy'</span></span><br><span class="line">data2 = <span class="string">'Dave'</span></span><br><span class="line">data3 = <span class="string">'Trump'</span></span><br><span class="line"></span><br><span class="line">storage_data(<span class="string">'Andy'</span>, <span class="string">'01055553333'</span>)</span><br><span class="line">storage_data(<span class="string">'Dave'</span>, <span class="string">'01012341234'</span>)</span><br><span class="line">storage_data(<span class="string">'Trump'</span>, <span class="string">'01009876543'</span>)</span><br><span class="line"></span><br><span class="line">get_data(<span class="string">'Andy'</span>)</span><br><span class="line"><span class="comment"># '01055553333'</span></span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<h3 id="해쉬-테이블의-장단점"><a href="#해쉬-테이블의-장단점" class="headerlink" title="해쉬 테이블의 장단점"></a>해쉬 테이블의 장단점</h3><ul>
-<li>장점<ul>
-<li>데이터 저장/읽기 속도가 빠르다</li>
-<li>데이터의 중복 확인이 쉽다</li>
-</ul>
-</li>
-<li>단점<ul>
-<li>저장 공간이 많이 필요하다.</li>
-<li>키가 충돌할 경우 처리할 별도의 자료구조가 필요하다<ul>
-<li>공간을 늘리는 것으로 어느정도 해결이 가능</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="충돌-해결-알고리즘"><a href="#충돌-해결-알고리즘" class="headerlink" title="충돌 해결 알고리즘"></a>충돌 해결 알고리즘</h3><blockquote>
-<p>다른 data 가 값은 해쉬 값을 가지는 것을 충돌이라 한다.</p>
-</blockquote>
-<h4 id="Chaining-기법"><a href="#Chaining-기법" class="headerlink" title="Chaining 기법"></a>Chaining 기법</h4><ul>
-<li><p>해쉬 테이블 외의 저장공간을 이용</p>
-<ul>
-<li><strong>개방 해싱(Open hashing)</strong> 기법</li>
-</ul>
-</li>
-<li><p>충돌이 일어나면, 링크드 리스트로 데이터를 뒤에 연결함</p>
-</li>
-</ul>
-<h4 id="Linear-Probing-기법"><a href="#Linear-Probing-기법" class="headerlink" title="Linear Probing 기법"></a>Linear Probing 기법</h4><ul>
-<li>해쉬 테이블 내의 저장공간을 이용<ul>
-<li><strong>폐쇄 해슁(Close hashing)</strong> 기법</li>
-</ul>
-</li>
-<li>충돌이 일어나면, 해당 hash address의 다음 address부터 맨 처음 나오는 빈 공간에 저장</li>
-</ul>
-<h4 id="Chaining-기법-예시"><a href="#Chaining-기법-예시" class="headerlink" title="Chaining 기법 예시"></a>Chaining 기법 예시</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_key</span><span class="params">(data)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> hash(data)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hash_func</span><span class="params">(key)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> key % <span class="number">8</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">save_data</span><span class="params">(data, value)</span>:</span></span><br><span class="line">    index_key = get_key(data)</span><br><span class="line">    hash_address = hash_func(index_key)</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> hash_table2[hash_address]:</span><br><span class="line">        hash_table2[hash_address].append([index_key, value])</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">for</span> index <span class="keyword">in</span> hash_table2[hash_address]:</span><br><span class="line">            <span class="keyword">if</span> index[<span class="number">0</span>] == index_key:</span><br><span class="line">                index[<span class="number">1</span>] = value</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">        hash_table2[hash_address].append([index_key, value])</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">read_data</span><span class="params">(data)</span>:</span></span><br><span class="line">    index_key = get_key(data)</span><br><span class="line">    hash_address = hash_func(index_key)</span><br><span class="line">    <span class="keyword">for</span> index <span class="keyword">in</span> hash_table2[hash_address]:</span><br><span class="line">        <span class="keyword">if</span> index[<span class="number">0</span>] == index_key:</span><br><span class="line">            print(index[<span class="number">1</span>])</span><br><span class="line">            <span class="keyword">return</span> index[<span class="number">1</span>]</span><br><span class="line">    </span><br><span class="line">    print(<span class="string">'데이터가 없습니다'</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">None</span></span><br></pre></td></tr></table></figure>
-
-
-
+<li>슬롯(slot) : 한 개의 데이터를 저장할 수 있는 공간
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/02/26/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0-%ED%95%B4%EC%8B%9C%ED%85%8C%EC%9D%B4%EB%B8%94/#more" rel="contents">
+                더 읽어보기 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
