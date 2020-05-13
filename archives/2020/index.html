@@ -25,14 +25,14 @@
     version: '7.7.1',
     exturl: false,
     sidebar: {"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},
-    copycode: {"enable":false,"show_result":false,"style":null},
+    copycode: {"enable":true,"show_result":false,"style":null},
     back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
     bookmark: {"enable":false,"color":"#222","save":"auto"},
     fancybox: false,
     mediumzoom: false,
     lazyload: false,
     pangu: false,
-    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    comments: {"style":"tabs","active":"disqus","storage":true,"lazyload":false,"nav":{"disqus":{"text":"Load Disqus","order":-1}},"activeClass":"disqus"},
     algolia: {
       appID: '',
       apiKey: '',
@@ -68,6 +68,15 @@
 
   <title>아카이브 | hbyyy's blog</title>
   
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-166358897-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-166358897-1');
+      }
+    </script>
 
 
 
@@ -441,10 +450,10 @@
 </div>
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
-        <a href="https://github.com/hbyyy" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hbyyy" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+        <a href="https://github.com/hbyyy" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hbyyy" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
       </span>
       <span class="links-of-author-item">
-        <a href="mailto:qjaduddl94@gmail.com" title="E-Mail → mailto:qjaduddl94@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+        <a href="mailto:qjaduddl94@gmail.com" title="E-Mail → mailto:qjaduddl94@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
       </span>
   </div>
 
@@ -529,6 +538,17 @@
   
 
   
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://hbyyy.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
 
 </body>
 </html>
