@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://hbyyy.github.io').hostname,
+    root: '/',
+    scheme: 'Mist',
+    version: '7.7.1',
+    exturl: false,
+    sidebar: {"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":"disqus","storage":true,"lazyload":false,"nav":{"disqus":{"text":"Load Disqus","order":-1}},"activeClass":"disqus"},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="파이썬의 기본 내장 시퀀스 타입에는 문자열, 튜플, 리스트, 바이트, 바이트 배열이 있다 이번 글에서는 튜플, 리스트, 바이트, 바이트 배열에 대해 정리할 것이다.  튜플 튜플은 쉼표로 구분된 값으로 이루어진다">
+<meta property="og:type" content="article">
+<meta property="og:title" content="파이썬 자료구조와 알고리즘 - 내장 시퀀스 타입(튜플, 리스트, 바이트, 바이트 배열)">
+<meta property="og:url" content="https://hbyyy.github.io/2020/05/14/python-datastructure-ch2-2-20200514/index.html">
+<meta property="og:site_name" content="hbyyy&#39;s blog">
+<meta property="og:description" content="파이썬의 기본 내장 시퀀스 타입에는 문자열, 튜플, 리스트, 바이트, 바이트 배열이 있다 이번 글에서는 튜플, 리스트, 바이트, 바이트 배열에 대해 정리할 것이다.  튜플 튜플은 쉼표로 구분된 값으로 이루어진다">
+<meta property="og:locale" content="ko_KR">
+<meta property="article:published_time" content="2020-05-14T08:43:08.000Z">
+<meta property="article:modified_time" content="2020-05-14T08:45:25.579Z">
+<meta property="article:author" content="BeonYeong Heo">
+<meta property="article:tag" content="Python">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://hbyyy.github.io/2020/05/14/python-datastructure-ch2-2-20200514/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>파이썬 자료구조와 알고리즘 - 내장 시퀀스 타입(튜플, 리스트, 바이트, 바이트 배열) | hbyyy's blog</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-166358897-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-166358897-1');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/rss2.xml" title="hbyyy's blog" type="application/rss+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">hbyyy's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>홈</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>태그<span class="badge">6</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>카테고리<span class="badge">5</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>아카이브<span class="badge">9</span></a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/hbyyy" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://hbyyy.github.io/2020/05/14/python-datastructure-ch2-2-20200514/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/20190120_184606.jpg">
+      <meta itemprop="name" content="BeonYeong Heo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="hbyyy's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          파이썬 자료구조와 알고리즘 - 내장 시퀀스 타입(튜플, 리스트, 바이트, 바이트 배열)
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-05-14 17:43:08 / Updated at: 17:45:25" itemprop="dateCreated datePublished" datetime="2020-05-14T17:43:08+09:00">2020-05-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/05/14/python-datastructure-ch2-2-20200514/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/05/14/python-datastructure-ch2-2-20200514/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <blockquote>
+<p>파이썬의 기본 내장 시퀀스 타입에는 문자열, 튜플, 리스트, 바이트, 바이트 배열이 있다</p>
+<p>이번 글에서는 튜플, 리스트, 바이트, 바이트 배열에 대해 정리할 것이다.</p>
+</blockquote>
+<h2 id="튜플"><a href="#튜플" class="headerlink" title="튜플"></a>튜플</h2><ul>
+<li>튜플은 쉼표로 구분된 값으로 이루어진다<a id="more"></a>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">t1 = <span class="number">1</span>, <span class="number">2</span></span><br><span class="line">print(t1)</span><br><span class="line">Out : (<span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line">    </span><br><span class="line">t1[<span class="number">0</span>] = <span class="number">5</span></span><br><span class="line">Out : <span class="comment"># 튜플은 불변 객체이다.</span></span><br><span class="line">Traceback (most recent call last)</span><br><span class="line">...</span><br><span class="line">TypeError: <span class="string">'tuple'</span> object does <span class="keyword">not</span> support item assignment</span><br><span class="line"></span><br><span class="line"><span class="comment"># 값이 1개인 튜플을 만드려면, 쉼표를 꼭 붙여줘야 한다.</span></span><br><span class="line">t2 = (<span class="number">1</span>)</span><br><span class="line">print(type(t2))</span><br><span class="line">Out : &lt;<span class="class"><span class="keyword">class</span> '<span class="title">int</span>'&gt;</span></span><br><span class="line"><span class="class"></span></span><br><span class="line">t2 = (1,) # or t2 = 1,</span><br><span class="line">print(type(t2))</span><br><span class="line">Out : &lt;<span class="class"><span class="keyword">class</span> '<span class="title">tuple</span>'&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<h3 id="튜플-매서드"><a href="#튜플-매서드" class="headerlink" title="튜플 매서드"></a>튜플 매서드</h3><h4 id="count-index"><a href="#count-index" class="headerlink" title="count(), index()"></a>count(), index()</h4><ul>
+<li>A.count(x)<ul>
+<li>튜플 A에 담긴 x 항목의 개수를 반환</li>
+</ul>
+</li>
+<li>A.index(x)<ul>
+<li>튜플 A에 있는 첫번째 x 항목의 인덱스를 반환한다.</li>
+</ul>
+</li>
+</ul>
+<h3 id="튜플-언패킹"><a href="#튜플-언패킹" class="headerlink" title="튜플 언패킹"></a>튜플 언패킹</h3><p>파이썬에서 모든 이터러블한 객체는 <strong>시퀀스 언패킹 연산자 (*)</strong> 로 언패킹 할 수 있다.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">x, *y = (<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>)</span><br><span class="line">print(x)</span><br><span class="line">Out : <span class="number">1</span></span><br><span class="line">print(y)</span><br><span class="line">Out : [<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="리스트"><a href="#리스트" class="headerlink" title="리스트"></a>리스트</h2><ul>
+<li>파이썬의 리스트(list) 객체는, <strong>배열</strong>과 유사한 구조이다. </li>
+<li>리스트는 크기를 동적으로 조정할 수 있고, 가변 타입이다.</li>
+</ul>
+<h3 id="리스트-메서드"><a href="#리스트-메서드" class="headerlink" title="리스트 메서드"></a>리스트 메서드</h3><h4 id="append"><a href="#append" class="headerlink" title="append()"></a>append()</h4><ul>
+<li>A.append(x)는 리스트 A 끝에 x 항목을 추가한다.</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">A = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">A.append(<span class="number">2</span>)</span><br><span class="line">print(A)</span><br><span class="line">Out : [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">2</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment">#슬라이싱을 이용해도 똑같은 작동을 한다.</span></span><br><span class="line">A[len(A):] = [<span class="number">1</span>]</span><br><span class="line">print(A)</span><br><span class="line">Out : [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>]</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="extend"><a href="#extend" class="headerlink" title="extend()"></a>extend()</h4><ul>
+<li>A.extend(iterable)은 리스트 A 끝에 이터러블한 객체의 모든 항목을 추가한다.</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">A = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">B = [<span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line">A.extend(B)</span><br><span class="line">print(A)</span><br><span class="line">Out : [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 슬라이싱 이용</span></span><br><span class="line">A = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">A[len(A):] = B</span><br><span class="line">print(A)</span><br><span class="line">Out : [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 연산자 이용</span></span><br><span class="line">A = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">A += B</span><br><span class="line">print(A)</span><br><span class="line">Out : [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="insert"><a href="#insert" class="headerlink" title="insert()"></a>insert()</h4><ul>
+<li>A.insert(i, x)는 리스트 A의 i번째 인덱스에 x 항목을 추가한다</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">A = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">A.insert(<span class="number">1</span>, <span class="number">5</span>)</span><br><span class="line">print(a)</span><br><span class="line">Out : [<span class="number">1</span>, <span class="number">5</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">    </span><br><span class="line"><span class="comment"># 슬라이싱 이용</span></span><br><span class="line">A = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">A[<span class="number">1</span>:<span class="number">1</span>] = [<span class="number">5</span>]</span><br><span class="line">print(a)</span><br><span class="line">Out : [<span class="number">1</span>, <span class="number">5</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p> insert() 메서트의 시간 복잡도는 O(n)이다. 리스트의 i 인덱스에 새로운 값을 넣는다면, i 인덱스 뒤의 값은 뒤로 한 칸씩 이동시켜야 하기 때문에 O(n)의 시간복잡도를 가진다.</p>
+</blockquote>
+<h4 id="remove-pop"><a href="#remove-pop" class="headerlink" title="remove(), pop()"></a>remove(), pop()</h4><ul>
+<li>A.remove(x)는 리스트 A에서 x값을 가진 항목을 삭제한다. x가 존재하지 않으면 ValueError를 일으키고, x가 여러개 존재하면 맨 앞쪽의 원소를 삭제한다</li>
+<li>A.pop(i) 는 리스트 A의 i번째 인덱스 항목을 제거하고, 그 값을 반환한다. i를 지정해주지 않으면 리스트 맨 뒤의 값을 제거하고 반환한다.</li>
+</ul>
+<h4 id="del"><a href="#del" class="headerlink" title="del"></a>del</h4><ul>
+<li>인덱스를 사용하여 특정한 항목을 삭제한다.</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">A = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line"><span class="keyword">del</span> A[<span class="number">0</span>]</span><br><span class="line">print(A)</span><br><span class="line">Out : [<span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 슬라이싱 사용도 가능</span></span><br><span class="line">A = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line"><span class="keyword">del</span> A[<span class="number">0</span>:<span class="number">2</span>]</span><br><span class="line">print(A)</span><br><span class="line">Out : [<span class="number">3</span>]</span><br><span class="line">    </span><br><span class="line"><span class="comment"># 변수 자체를 삭제할 수도 있다</span></span><br><span class="line">A = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line"><span class="keyword">del</span> A</span><br><span class="line">print(A)</span><br><span class="line">Out : </span><br><span class="line">Traceback (most recent call last)</span><br><span class="line">...</span><br><span class="line">NameError: name <span class="string">'A'</span> <span class="keyword">is</span> <span class="keyword">not</span> defined</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p> 변수를 삭제하고 그 변수가 가리키던 값을 어느 변수도 참조하지 않는다면 파이썬 가비지 컬렉터가 그 데이터를 수집하여 처리해 준다.</p>
+</blockquote>
+<h4 id="index-count"><a href="#index-count" class="headerlink" title="index(), count()"></a>index(), count()</h4><ul>
+<li><p>A.index(x)는 리스트 A에서 x 항목의 인덱스 값을 반환한다. x값이 없다면 ValueError를 반환한다.</p>
+</li>
+<li><p>A.count(x)는 리스트 A에서 x 항목의 갯수를 반환한다.</p>
+</li>
+</ul>
+<h4 id="revers"><a href="#revers" class="headerlink" title="revers()"></a>revers()</h4><ul>
+<li>A.reverse() 메서드는 리스트 A의 항목들을 반전시킨다.</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">A = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">A.reverse()</span><br><span class="line">print(A)</span><br><span class="line">Out : [<span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>]</span><br><span class="line">    </span><br><span class="line"><span class="comment"># 슬라이싱 이용</span></span><br><span class="line">A = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">print(A[::<span class="number">-1</span>])</span><br><span class="line">Out : [<span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>]</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="리스트-컴프리헨션"><a href="#리스트-컴프리헨션" class="headerlink" title="리스트 컴프리헨션"></a>리스트 컴프리헨션</h3><ul>
+<li>파이썬에서 컴프리헨션은 반복되거나 특정 조건을 만족하는 객체를 쉽게 만들어내기 위한 방법이다.</li>
+<li>리스트 뿐만 아니라 셋, 딕셔너리도 컴프리헨션을 사용할 수 있다</li>
+</ul>
+<h5 id="컴프리헨션-형식"><a href="#컴프리헨션-형식" class="headerlink" title="컴프리헨션 형식"></a>컴프리헨션 형식</h5><ul>
+<li>[ 항목 for 항목 in iterable]</li>
+<li>[ 표현식 for 항목 in iterable]</li>
+<li>[ 항목 for 항목 in iterable if 조건]</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">A = [i <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, <span class="number">10</span>)]</span><br><span class="line">print(A)</span><br><span class="line">Out : [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 표현식 이용</span></span><br><span class="line">A = [i*<span class="number">2</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, <span class="number">10</span>)]</span><br><span class="line">print(A)</span><br><span class="line">Out : [<span class="number">2</span>, <span class="number">4</span>, <span class="number">6</span>, <span class="number">8</span>, <span class="number">10</span>, <span class="number">12</span>, <span class="number">14</span>, <span class="number">16</span>, <span class="number">18</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 조건문 이용</span></span><br><span class="line">A = [i <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, <span class="number">10</span>) <span class="keyword">if</span> i % <span class="number">2</span> == <span class="number">0</span>]</span><br><span class="line">print(A)</span><br><span class="line">Out : [<span class="number">2</span>, <span class="number">4</span>, <span class="number">6</span>, <span class="number">8</span>]</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p> 컴프리헨션을 이용해 리스트를 만든다면, 짧은 코드로 값이 들어있는 리스트를 만들 수 있다. 코드가 짧으니 좋아 보이지만, 가독성을 위해서는 여러 줄의 반복문과 조건문으로 구현하는게 나을 수도 있다.</p>
+</blockquote>
+<h2 id="바이트와-바이트-배열"><a href="#바이트와-바이트-배열" class="headerlink" title="바이트와 바이트 배열"></a>바이트와 바이트 배열</h2><ul>
+<li>바이트(bytes)와 바이트 배열(bytearray)는 파이썬에서 바이트를 처리하는데 사용할 수 있는 자료형이다</li>
+<li>bytes는 불변 타입으로 문자열 타입과 유사하고, bytearray는 가변 타입으로 리스트 타입과 유사하다.</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">A = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">bytes1 = bytes(A)</span><br><span class="line">print(bytes1)</span><br><span class="line">Out : <span class="string">b'\x01\x02\x03'</span>	<span class="comment"># b''는 바이트 문자열이다</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># bytes는 불변 객체이다</span></span><br><span class="line">bytes1[<span class="number">1</span>] = <span class="number">5</span></span><br><span class="line">Out :</span><br><span class="line">Traceback (most recent call last)</span><br><span class="line">...</span><br><span class="line">TypeError: <span class="string">'bytes'</span> object does <span class="keyword">not</span> support item assignment</span><br><span class="line"></span><br><span class="line">bytearray1 = bytearray(A)</span><br><span class="line">print(bytearray1)</span><br><span class="line">Out : bytearray(<span class="string">b'\x01\x02\x03'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#bytearray는 가변 객체이다</span></span><br><span class="line">bytearray1[<span class="number">1</span>] = <span class="number">5</span></span><br><span class="line">print(bytearray1)</span><br><span class="line">Out : bytearray(<span class="string">b'\x01\x05\x03'</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p>다음 포스트에서는 셋(set)과 딕셔너리같은 컬렉션 자료구조에 대해 정리할 것이다.</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Python/" rel="tag"># Python</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/05/13/python-datastructure-ch2-1-20200513/" rel="prev" title="파이썬 자료구조와 알고리즘 - 내장 시퀀스 타입 (1)">
+      <i class="fa fa-chevron-left"></i> 파이썬 자료구조와 알고리즘 - 내장 시퀀스 타입 (1)
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          목차
+        </li>
+        <li class="sidebar-nav-overview">
+          흝어보기
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#튜플"><span class="nav-number">1.</span> <span class="nav-text">튜플</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#튜플-매서드"><span class="nav-number">1.1.</span> <span class="nav-text">튜플 매서드</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#count-index"><span class="nav-number">1.1.1.</span> <span class="nav-text">count(), index()</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#튜플-언패킹"><span class="nav-number">1.2.</span> <span class="nav-text">튜플 언패킹</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#리스트"><span class="nav-number">2.</span> <span class="nav-text">리스트</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#리스트-메서드"><span class="nav-number">2.1.</span> <span class="nav-text">리스트 메서드</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#append"><span class="nav-number">2.1.1.</span> <span class="nav-text">append()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#extend"><span class="nav-number">2.1.2.</span> <span class="nav-text">extend()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#insert"><span class="nav-number">2.1.3.</span> <span class="nav-text">insert()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#remove-pop"><span class="nav-number">2.1.4.</span> <span class="nav-text">remove(), pop()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#del"><span class="nav-number">2.1.5.</span> <span class="nav-text">del</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#index-count"><span class="nav-number">2.1.6.</span> <span class="nav-text">index(), count()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#revers"><span class="nav-number">2.1.7.</span> <span class="nav-text">revers()</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#리스트-컴프리헨션"><span class="nav-number">2.2.</span> <span class="nav-text">리스트 컴프리헨션</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#컴프리헨션-형식"><span class="nav-number">2.2.0.1.</span> <span class="nav-text">컴프리헨션 형식</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#바이트와-바이트-배열"><span class="nav-number">3.</span> <span class="nav-text">바이트와 바이트 배열</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="BeonYeong Heo"
+      src="/uploads/20190120_184606.jpg">
+  <p class="site-author-name" itemprop="name">BeonYeong Heo</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-name">포스트</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">카테고리</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">태그</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hbyyy" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hbyyy" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:qjaduddl94@gmail.com" title="E-Mail → mailto:qjaduddl94@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">BeonYeong Heo</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.7.1
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://hbyyy.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://hbyyy.github.io/2020/05/14/python-datastructure-ch2-2-20200514/";
+    this.page.identifier = "2020/05/14/python-datastructure-ch2-2-20200514/";
+    this.page.title = "파이썬 자료구조와 알고리즘 - 내장 시퀀스 타입(튜플, 리스트, 바이트, 바이트 배열)";
+    };
+  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: disqus_config
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://hbyyy.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  });
+</script>
+
+</body>
+</html>
