@@ -8,6 +8,30 @@
     </url>
 
     <url>
+        <loc>https://hbyyy.github.io/2020/05/12/python-datastructure-ch7-1-202005112/</loc>
+        <lastmod>2020-05-18T13:28:35.045Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://hbyyy.github.io/2020/05/18/TIL-20200518/</loc>
+        <lastmod>2020-05-18T13:24:15.829Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://hbyyy.github.io/2020/05/16/TIL-20200516/</loc>
+        <lastmod>2020-05-18T13:22:05.663Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://hbyyy.github.io/2020/05/18/python-datastructure-ch7-2-20200518/</loc>
         <lastmod>2020-05-18T10:54:43.888Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -18,14 +42,6 @@
     <url>
         <loc>https://hbyyy.github.io/2020/05/14/python-datastructure-ch2-2-20200514/</loc>
         <lastmod>2020-05-14T08:45:25.579Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://hbyyy.github.io/2020/05/12/python-datastructure-algo-ch7-1/</loc>
-        <lastmod>2020-05-13T10:36:23.836Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
