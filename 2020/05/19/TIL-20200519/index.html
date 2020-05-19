@@ -46,23 +46,20 @@
   };
 </script>
 
-  <meta name="description" content="프로세스란?프로세스란 간단히 정리하면 실행 중인 프로그램 이라고 할 수 있습니다. 프로그램은 실행 하기 전에는 보조 기억 장치(SSD나 HDD)에 저장되어 실행을 기다리고 있는데,  이 프로그램이 실행을 요청받아 메모리에 적재된다면 프로세스가 됩니다.">
+  <meta name="description" content="파이썬 자료구조와 알고리즘 CH 7 연습문제 풀이  (반정도 완료) 파이썬 컬렉션 자료구조 (셋, 딕셔너리) 복습, 정리">
 <meta property="og:type" content="article">
-<meta property="og:title" content="OS - 프로세스 구조">
-<meta property="og:url" content="https://hbyyy.github.io/2020/02/14/OS-process%EA%B5%AC%EC%A1%B0/index.html">
+<meta property="og:title" content="TIL-20200519">
+<meta property="og:url" content="https://hbyyy.github.io/2020/05/19/TIL-20200519/index.html">
 <meta property="og:site_name" content="hbyyy&#39;s blog">
-<meta property="og:description" content="프로세스란?프로세스란 간단히 정리하면 실행 중인 프로그램 이라고 할 수 있습니다. 프로그램은 실행 하기 전에는 보조 기억 장치(SSD나 HDD)에 저장되어 실행을 기다리고 있는데,  이 프로그램이 실행을 요청받아 메모리에 적재된다면 프로세스가 됩니다.">
+<meta property="og:description" content="파이썬 자료구조와 알고리즘 CH 7 연습문제 풀이  (반정도 완료) 파이썬 컬렉션 자료구조 (셋, 딕셔너리) 복습, 정리">
 <meta property="og:locale" content="ko_KR">
-<meta property="og:image" content="https://images.velog.io/post-images/pa324/06db2c70-1242-11ea-9735-834e8b45e32e/image.png">
-<meta property="article:published_time" content="2020-02-13T16:50:51.000Z">
-<meta property="article:modified_time" content="2020-02-15T18:10:27.419Z">
+<meta property="article:published_time" content="2020-05-19T13:42:58.000Z">
+<meta property="article:modified_time" content="2020-05-19T13:44:09.803Z">
 <meta property="article:author" content="BeomYeong Heo">
-<meta property="article:tag" content="OS">
-<meta property="article:tag" content="CS">
+<meta property="article:tag" content="TIL">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://images.velog.io/post-images/pa324/06db2c70-1242-11ea-9735-834e8b45e32e/image.png">
 
-<link rel="canonical" href="https://hbyyy.github.io/2020/02/14/OS-process%EA%B5%AC%EC%A1%B0/">
+<link rel="canonical" href="https://hbyyy.github.io/2020/05/19/TIL-20200519/">
 
 
 <script id="page-configurations">
@@ -74,7 +71,7 @@
   };
 </script>
 
-  <title>OS - 프로세스 구조 | hbyyy's blog</title>
+  <title>TIL-20200519 | hbyyy's blog</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-166358897-1"></script>
     <script>
@@ -196,7 +193,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="ko">
-    <link itemprop="mainEntityOfPage" href="https://hbyyy.github.io/2020/02/14/OS-process%EA%B5%AC%EC%A1%B0/">
+    <link itemprop="mainEntityOfPage" href="https://hbyyy.github.io/2020/05/19/TIL-20200519/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/uploads/20190120_184606.jpg">
@@ -209,7 +206,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          OS - 프로세스 구조
+          TIL-20200519
         </h1>
 
         <div class="post-meta">
@@ -218,24 +215,18 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">작성일</span>
+              
 
-              <time title="Post created: 2020-02-14 01:50:51" itemprop="dateCreated datePublished" datetime="2020-02-14T01:50:51+09:00">2020-02-14</time>
+              <time title="Post created: 2020-05-19 22:42:58 / Updated at: 22:44:09" itemprop="dateCreated datePublished" datetime="2020-05-19T22:42:58+09:00">2020-05-19</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Updated at: 2020-02-16 03:10:27" itemprop="dateModified" datetime="2020-02-16T03:10:27+09:00">2020-02-16</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/OS/" itemprop="url" rel="index">
-                    <span itemprop="name">OS</span>
+                  <a href="/categories/TIL/" itemprop="url" rel="index">
+                    <span itemprop="name">TIL</span>
                   </a>
                 </span>
             </span>
@@ -249,8 +240,8 @@
       </span>
       <span class="post-meta-item-text">Disqus: </span>
     
-    <a title="disqus" href="/2020/02/14/OS-process%EA%B5%AC%EC%A1%B0/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/02/14/OS-process구조/" itemprop="commentCount"></span>
+    <a title="disqus" href="/2020/05/19/TIL-20200519/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/05/19/TIL-20200519/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -265,37 +256,13 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="프로세스란"><a href="#프로세스란" class="headerlink" title="프로세스란?"></a>프로세스란?</h3><p>프로세스란 간단히 정리하면 <strong>실행 중인 프로그램</strong> 이라고 할 수 있습니다. <strong>프로그램</strong>은 실행 하기 전에는 보조 기억 장치(SSD나 HDD)에 저장되어 실행을 기다리고 있는데,  이 프로그램이 실행을 요청받아 메모리에 적재된다면 프로세스가 됩니다.</p>
-<a id="more"></a>
-
-<h3 id="프로세스의-구조"><a href="#프로세스의-구조" class="headerlink" title="프로세스의 구조"></a>프로세스의 구조</h3><p><img src="https://images.velog.io/post-images/pa324/06db2c70-1242-11ea-9735-834e8b45e32e/image.png" alt="프로세스 구조 이미지 검색결과"></p>
-<p>프로세스는 일반적으로 code, data, heap, stack 영역으로 이루어집니다.</p>
-<ol>
-<li><strong>Text(Code) 영역</strong><ul>
-<li>Text 영역은 프로그램의 코드가 저장되는 영역이다.   CPU는 이곳에 저장되어 있는 코드를 한 줄씩 실행시키고, PC(process counter)가 다음 실행할 코드의 주소를 가리키고 있습니다.</li>
+        <ol>
+<li>파이썬 자료구조와 알고리즘<ul>
+<li>CH 7 연습문제 풀이  (반정도 완료)</li>
+<li>파이썬 컬렉션 자료구조 (셋, 딕셔너리) 복습, 정리</li>
 </ul>
 </li>
 </ol>
-<ol start="2">
-<li><strong>data 영역</strong><ul>
-<li>data 영역은 전역 변수, 정적 변수 등의 데이터가 저장되는 공간입니다. </li>
-</ul>
-</li>
-</ol>
-<ol start="3">
-<li><strong>Heap 영역</strong><ul>
-<li>Heap 영역은 프로그램 실행 시 동적으로 할당되는 데이터가 저장되는 공간입니다.. 이 공간은 사용자가 직접 관리할 수 있습니다.</li>
-</ul>
-</li>
-</ol>
-<ol start="4">
-<li><strong>Stack 영역</strong><ul>
-<li>Stack 영역은 프로그램에서 함수 호출 시, 함수의 정보가 저장되는 영역입니다. 지역 변수, 매개 변수, 함수 종료시 돌아갈 리턴 주소 등이 저장되는데, 이 구조를 스택 프레임이라고 합나다.  Stack 영역이라는 이름답게 FIFO 방식으로 데이터가 push되고 pop 됩니다.</li>
-<li>스택의 최상단 부분을 SP(Stack pointer)가 가리키고 있습니다.</li>
-</ul>
-</li>
-</ol>
-<p>프로세스는 일반적으로 다음과 같은 구조를 가지고 있고, 각각의 이름은 운영체제마다 조금씩 차이가 있습니다.</p>
 
     </div>
 
@@ -305,8 +272,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/OS/" rel="tag"># OS</a>
-              <a href="/tags/CS/" rel="tag"># CS</a>
+              <a href="/tags/TIL/" rel="tag"># TIL</a>
           </div>
 
         
@@ -315,13 +281,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/02/12/DRFTutorial-1/" rel="prev" title="Django Rest Framework Tutorial (1)">
-      <i class="fa fa-chevron-left"></i> Django Rest Framework Tutorial (1)
+    <a href="/2020/05/18/TIL-20200518/" rel="prev" title="TIL-20200518">
+      <i class="fa fa-chevron-left"></i> TIL-20200518
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/02/16/OS-%EC%BB%A8%ED%85%8D%EC%8A%A4%ED%8A%B8%EC%8A%A4%EC%9C%84%EC%B9%AD/" rel="next" title="OS - 컨텍스트 스위칭">
-      OS - 컨텍스트 스위칭 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -388,7 +351,6 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#프로세스란"><span class="nav-number">1.</span> <span class="nav-text">프로세스란?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#프로세스의-구조"><span class="nav-number">2.</span> <span class="nav-text">프로세스의 구조</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -525,9 +487,9 @@
 </script>
 <script>
   var disqus_config = function() {
-    this.page.url = "https://hbyyy.github.io/2020/02/14/OS-process%EA%B5%AC%EC%A1%B0/";
-    this.page.identifier = "2020/02/14/OS-process구조/";
-    this.page.title = "OS - 프로세스 구조";
+    this.page.url = "https://hbyyy.github.io/2020/05/19/TIL-20200519/";
+    this.page.identifier = "2020/05/19/TIL-20200519/";
+    this.page.title = "TIL-20200519";
     };
   NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
     if (window.DISQUS) {

@@ -9,8 +9,35 @@
     <atom:link href="/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description></description>
-    <pubDate>Mon, 18 May 2020 13:24:15 GMT</pubDate>
+    <pubDate>Tue, 19 May 2020 13:44:09 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>TIL-20200519</title>
+      <link>https://hbyyy.github.io/2020/05/19/TIL-20200519/</link>
+      <guid>https://hbyyy.github.io/2020/05/19/TIL-20200519/</guid>
+      <pubDate>Tue, 19 May 2020 13:42:58 GMT</pubDate>
+      <description>
+      
+        
+        
+          &lt;ol&gt;
+&lt;li&gt;파이썬 자료구조와 알고리즘&lt;ul&gt;
+&lt;li&gt;CH 7 연습문제 풀이  (반정도 완료)&lt;/li&gt;
+&lt;li&gt;파이썬 컬렉션 자료구조 (셋, 딕셔너리) 복습, 정리&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+
+        
+      
+      </description>
+      
+      
+      <content:encoded><![CDATA[<ol><li>파이썬 자료구조와 알고리즘<ul><li>CH 7 연습문제 풀이  (반정도 완료)</li><li>파이썬 컬렉션 자료구조 (셋, 딕셔너리) 복습, 정리</li></ul></li></ol>]]></content:encoded>
+      
+      <comments>https://hbyyy.github.io/2020/05/19/TIL-20200519/#disqus_thread</comments>
+    </item>
     
     <item>
       <title>TIL-20200518</title>
@@ -224,23 +251,6 @@
       <content:encoded><![CDATA[<h3 id="컨텍스트-스위칭이란"><a href="#컨텍스트-스위칭이란" class="headerlink" title="컨텍스트 스위칭이란"></a>컨텍스트 스위칭이란</h3><p> 운영체제의 스케줄러는 자원의 낭비를 최소화하기 위해 여러 프로세스를 계속해서 번갈아가며 실행하는 멀티프로그래밍 방식으로 프로세스를 실행한다.</p><p>프로세스 A, B가 실행 중이라고 가정해보자. A 프로세스가 running  상태이고, B 프로세스가 ready 상태일 때, 스케줄러가  A 프로세서에서 B 프로세서로 실행하는 프로세스를 바꾸는 것이 <strong>컨텍스트 스위칭</strong> 이다.</p><a id="more"></a><h3 id="PCB란"><a href="#PCB란" class="headerlink" title="PCB란"></a>PCB란</h3><p> 컨텍스트 스위칭이 일어날 때, 프로세스는 프로세스가 실행되는 상태의 모든 정보를 <strong>PCB(Process Control Block)</strong>란 자료구조에 저장하고, 이것은 메인 메모리에 저장된다. </p><p> 스케줄러가 이 프로세스를 다시 실행하려고 한다면 , PCB에 있는 정보를 CPU에 다시 넣고 실행하게 된다. 이런 과정을 통해 예전에 실행하던 프로세스의 정보를 그대로 가져와 중지된 부분부터 다시 실행할 수 있게 된다.</p>]]></content:encoded>
       
       <comments>https://hbyyy.github.io/2020/02/16/OS-%EC%BB%A8%ED%85%8D%EC%8A%A4%ED%8A%B8%EC%8A%A4%EC%9C%84%EC%B9%AD/#disqus_thread</comments>
-    </item>
-    
-    <item>
-      <title>OS - 프로세스 구조</title>
-      <link>https://hbyyy.github.io/2020/02/14/OS-process%EA%B5%AC%EC%A1%B0/</link>
-      <guid>https://hbyyy.github.io/2020/02/14/OS-process%EA%B5%AC%EC%A1%B0/</guid>
-      <pubDate>Thu, 13 Feb 2020 16:50:51 GMT</pubDate>
-      <description>
-      
-        &lt;h3 id=&quot;프로세스란&quot;&gt;&lt;a href=&quot;#프로세스란&quot; class=&quot;headerlink&quot; title=&quot;프로세스란?&quot;&gt;&lt;/a&gt;프로세스란?&lt;/h3&gt;&lt;p&gt;프로세스란 간단히 정리하면 &lt;strong&gt;실행 중인 프로그램&lt;/strong&gt; 이라고 할 수 있습니다. &lt;strong&gt;프로그램&lt;/strong&gt;은 실행 하기 전에는 보조 기억 장치(SSD나 HDD)에 저장되어 실행을 기다리고 있는데,  이 프로그램이 실행을 요청받아 메모리에 적재된다면 프로세스가 됩니다.&lt;/p&gt;
-      
-      </description>
-      
-      
-      <content:encoded><![CDATA[<h3 id="프로세스란"><a href="#프로세스란" class="headerlink" title="프로세스란?"></a>프로세스란?</h3><p>프로세스란 간단히 정리하면 <strong>실행 중인 프로그램</strong> 이라고 할 수 있습니다. <strong>프로그램</strong>은 실행 하기 전에는 보조 기억 장치(SSD나 HDD)에 저장되어 실행을 기다리고 있는데,  이 프로그램이 실행을 요청받아 메모리에 적재된다면 프로세스가 됩니다.</p><a id="more"></a><h3 id="프로세스의-구조"><a href="#프로세스의-구조" class="headerlink" title="프로세스의 구조"></a>프로세스의 구조</h3><p><img src="https://images.velog.io/post-images/pa324/06db2c70-1242-11ea-9735-834e8b45e32e/image.png" alt="프로세스 구조 이미지 검색결과"></p><p>프로세스는 일반적으로 code, data, heap, stack 영역으로 이루어집니다.</p><ol><li><strong>Text(Code) 영역</strong><ul><li>Text 영역은 프로그램의 코드가 저장되는 영역이다.   CPU는 이곳에 저장되어 있는 코드를 한 줄씩 실행시키고, PC(process counter)가 다음 실행할 코드의 주소를 가리키고 있습니다.</li></ul></li></ol><ol start="2"><li><strong>data 영역</strong><ul><li>data 영역은 전역 변수, 정적 변수 등의 데이터가 저장되는 공간입니다. </li></ul></li></ol><ol start="3"><li><strong>Heap 영역</strong><ul><li>Heap 영역은 프로그램 실행 시 동적으로 할당되는 데이터가 저장되는 공간입니다.. 이 공간은 사용자가 직접 관리할 수 있습니다.</li></ul></li></ol><ol start="4"><li><strong>Stack 영역</strong><ul><li>Stack 영역은 프로그램에서 함수 호출 시, 함수의 정보가 저장되는 영역입니다. 지역 변수, 매개 변수, 함수 종료시 돌아갈 리턴 주소 등이 저장되는데, 이 구조를 스택 프레임이라고 합나다.  Stack 영역이라는 이름답게 FIFO 방식으로 데이터가 push되고 pop 됩니다.</li><li>스택의 최상단 부분을 SP(Stack pointer)가 가리키고 있습니다.</li></ul></li></ol><p>프로세스는 일반적으로 다음과 같은 구조를 가지고 있고, 각각의 이름은 운영체제마다 조금씩 차이가 있습니다.</p>]]></content:encoded>
-      
-      <comments>https://hbyyy.github.io/2020/02/14/OS-process%EA%B5%AC%EC%A1%B0/#disqus_thread</comments>
     </item>
     
   </channel>
