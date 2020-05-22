@@ -46,15 +46,23 @@
   };
 </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="hbyyy&#39;s blog">
-<meta property="og:url" content="https://hbyyy.github.io/categories/OS/index.html">
+  <meta name="description" content="이번 포스트에서는 대표적인 그래프 탐색 알고리즘인 BFS(너비 우선 탐색), DFS(깊이 우선 탐색)에 대해 정리할 것이다.  BFS (너비 우선 탐색) BFS는 너비 우선 탐색으로, 해당 노드와 같은 레벨에 있는 노드들을 먼저 순회하는 탐색 알고리즘이다.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="BFS,DFS">
+<meta property="og:url" content="https://hbyyy.github.io/2020/05/22/algo-BFSDFS-20200522/index.html">
 <meta property="og:site_name" content="hbyyy&#39;s blog">
+<meta property="og:description" content="이번 포스트에서는 대표적인 그래프 탐색 알고리즘인 BFS(너비 우선 탐색), DFS(깊이 우선 탐색)에 대해 정리할 것이다.  BFS (너비 우선 탐색) BFS는 너비 우선 탐색으로, 해당 노드와 같은 레벨에 있는 노드들을 먼저 순회하는 탐색 알고리즘이다.">
 <meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="https://hbyyy.github.io/image/tree1.png">
+<meta property="article:published_time" content="2020-05-22T08:30:51.000Z">
+<meta property="article:modified_time" content="2020-05-22T08:32:04.660Z">
 <meta property="article:author" content="BeomYeong Heo">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="알고리즘">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hbyyy.github.io/image/tree1.png">
 
-<link rel="canonical" href="https://hbyyy.github.io/categories/OS/">
+<link rel="canonical" href="https://hbyyy.github.io/2020/05/22/algo-BFSDFS-20200522/">
 
 
 <script id="page-configurations">
@@ -62,11 +70,11 @@
   CONFIG.page = {
     sidebar: "",
     isHome: false,
-    isPost: false
+    isPost: true
   };
 </script>
 
-  <title>카테고리: OS | hbyyy's blog</title>
+  <title>BFS,DFS | hbyyy's blog</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-166358897-1"></script>
     <script>
@@ -183,74 +191,123 @@
           <div class="content">
             
 
+  <div class="posts-expand">
+      
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <h1 class="collection-header">OS
-          <small>카테고리</small>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://hbyyy.github.io/2020/05/22/algo-BFSDFS-20200522/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/20190120_184606.jpg">
+      <meta itemprop="name" content="BeomYeong Heo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="hbyyy's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          BFS,DFS
         </h1>
-      </div>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-05-22 17:30:51 / Updated at: 17:32:04" itemprop="dateCreated datePublished" datetime="2020-05-22T17:30:51+09:00">2020-05-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/" itemprop="url" rel="index">
+                    <span itemprop="name">알고리즘</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/05/22/algo-BFSDFS-20200522/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/05/22/algo-BFSDFS-20200522/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <h1 class="collection-header">2020</h1>
-    </div>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-02-16T03:07:06+09:00"
-              content="2020-02-16">
-          02-16
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/2020/02/16/OS-%EC%BB%A8%ED%85%8D%EC%8A%A4%ED%8A%B8%EC%8A%A4%EC%9C%84%EC%B9%AD/" itemprop="url">
-            <span itemprop="name">OS - 컨텍스트 스위칭</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-02-14T01:50:51+09:00"
-              content="2020-02-14">
-          02-14
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/2020/02/14/OS-process%EA%B5%AC%EC%A1%B0/" itemprop="url">
-            <span itemprop="name">OS - 프로세스 구조</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
+        <blockquote>
+<p>이번 포스트에서는 대표적인 그래프 탐색 알고리즘인 BFS(너비 우선 탐색), DFS(깊이 우선 탐색)에 대해 정리할 것이다.</p>
+</blockquote>
+<h2 id="BFS-너비-우선-탐색"><a href="#BFS-너비-우선-탐색" class="headerlink" title="BFS (너비 우선 탐색)"></a>BFS (너비 우선 탐색)</h2><p> BFS는 너비 우선 탐색으로, 해당 노드와 같은 레벨에 있는 노드들을 먼저 순회하는 탐색 알고리즘이다.</p>
+<a id="more"></a>
+<p><img src="/image/tree1.png" alt=""></p>
 
     </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Python/" rel="tag"># Python</a>
+              <a href="/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/" rel="tag"># 알고리즘</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/05/19/python-datastructure-ch3-1-20200519/" rel="prev" title="python_datastructure_ch3_1_20200519">
+      <i class="fa fa-chevron-left"></i> python_datastructure_ch3_1_20200519
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
   </div>
-  
-  
-  
-
-  
-
 
 
           </div>
           
+    
+  <div class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -297,6 +354,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#BFS-너비-우선-탐색"><span class="nav-number">1.</span> <span class="nav-text">BFS (너비 우선 탐색)</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -430,6 +488,26 @@
   }
   // defer loading until the whole page loading is completed
   window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://hbyyy.github.io/2020/05/22/algo-BFSDFS-20200522/";
+    this.page.identifier = "2020/05/22/algo-BFSDFS-20200522/";
+    this.page.title = "BFS,DFS";
+    };
+  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: disqus_config
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://hbyyy.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  });
 </script>
 
 </body>
