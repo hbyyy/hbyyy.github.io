@@ -46,19 +46,19 @@
   };
 </script>
 
-  <meta name="description" content="이번 포스트에서는 대표적인 그래프 탐색 알고리즘인 BFS(너비 우선 탐색), DFS(깊이 우선 탐색)에 대해 정리할 것이다.  BFS (너비 우선 탐색) BFS는 너비 우선 탐색으로, 해당 노드와 같은 레벨에 있는 노드들을 먼저 순회하는 탐색 알고리즘이다.  위의 트리에서, BFS라면 0 - 1 - 2 - 3 - 4 - 5 - 6 순으로 순회할 것이다.">
+  <meta name="description" content="이번 포스트에서는 대표적인 그래프 탐색 알고리즘인 BFS(너비 우선 탐색), DFS(깊이 우선 탐색)에 대해 정리할 것이다.  BFS (너비 우선 탐색) BFS는 너비 우선 탐색으로, 해당 노드와 같은 레벨에 있는 노드들을 먼저 순회하는 탐색 알고리즘이다.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="BFS,DFS">
 <meta property="og:url" content="https://hbyyy.github.io/2020/05/22/algo-BFSDFS-20200522/index.html">
 <meta property="og:site_name" content="hbyyy&#39;s blog">
-<meta property="og:description" content="이번 포스트에서는 대표적인 그래프 탐색 알고리즘인 BFS(너비 우선 탐색), DFS(깊이 우선 탐색)에 대해 정리할 것이다.  BFS (너비 우선 탐색) BFS는 너비 우선 탐색으로, 해당 노드와 같은 레벨에 있는 노드들을 먼저 순회하는 탐색 알고리즘이다.  위의 트리에서, BFS라면 0 - 1 - 2 - 3 - 4 - 5 - 6 순으로 순회할 것이다.">
+<meta property="og:description" content="이번 포스트에서는 대표적인 그래프 탐색 알고리즘인 BFS(너비 우선 탐색), DFS(깊이 우선 탐색)에 대해 정리할 것이다.  BFS (너비 우선 탐색) BFS는 너비 우선 탐색으로, 해당 노드와 같은 레벨에 있는 노드들을 먼저 순회하는 탐색 알고리즘이다.">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:image" content="https://hbyyy.github.io/image/tree1.png">
 <meta property="og:image" content="https://hbyyy.github.io/image/tree2.png">
 <meta property="og:image" content="https://hbyyy.github.io/image/tree1.png">
 <meta property="og:image" content="https://hbyyy.github.io/image/tree2.png">
 <meta property="article:published_time" content="2020-05-22T08:30:51.000Z">
-<meta property="article:modified_time" content="2020-05-22T09:37:17.157Z">
+<meta property="article:modified_time" content="2020-05-28T13:17:59.807Z">
 <meta property="article:author" content="BeomYeong Heo">
 <meta property="article:tag" content="알고리즘">
 <meta property="article:tag" content="Python">
@@ -221,10 +221,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">작성일</span>
-              
 
-              <time title="Post created: 2020-05-22 17:30:51 / Updated at: 18:37:17" itemprop="dateCreated datePublished" datetime="2020-05-22T17:30:51+09:00">2020-05-22</time>
+              <time title="Post created: 2020-05-22 17:30:51" itemprop="dateCreated datePublished" datetime="2020-05-22T17:30:51+09:00">2020-05-22</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-05-28 22:17:59" itemprop="dateModified" datetime="2020-05-28T22:17:59+09:00">2020-05-28</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -265,12 +271,15 @@
         <blockquote>
 <p>이번 포스트에서는 대표적인 그래프 탐색 알고리즘인 BFS(너비 우선 탐색), DFS(깊이 우선 탐색)에 대해 정리할 것이다.</p>
 </blockquote>
-<h2 id="BFS-너비-우선-탐색"><a href="#BFS-너비-우선-탐색" class="headerlink" title="BFS (너비 우선 탐색)"></a>BFS (너비 우선 탐색)</h2><p> BFS는 너비 우선 탐색으로, 해당 노드와 같은 레벨에 있는 노드들을 먼저 순회하는 탐색 알고리즘이다.<br><img src="/image/tree1.png" alt=""></p>
+<h2 id="BFS-너비-우선-탐색"><a href="#BFS-너비-우선-탐색" class="headerlink" title="BFS (너비 우선 탐색)"></a>BFS (너비 우선 탐색)</h2><p> BFS는 너비 우선 탐색으로, 해당 노드와 같은 레벨에 있는 노드들을 먼저 순회하는 탐색 알고리즘이다.</p>
+<a id="more"></a>
+<p><img src="/image/tree1.png" alt=""></p>
 <p> 위의 트리에서, BFS라면 0 - 1 - 2 - 3 - 4 - 5 - 6 순으로 순회할 것이다.</p>
 <h3 id="파이썬으로-그래프-표현"><a href="#파이썬으로-그래프-표현" class="headerlink" title="파이썬으로 그래프 표현"></a>파이썬으로 그래프 표현</h3><ul>
 <li>파이썬에서는 딕셔너리, 리스트를 이용해 그래프를 표현할 수 있다</li>
-<li>인접 리스트, 인접 행렬 두 가지 방법이 있다.<br>&lt;!– more –!&gt;<br><img src="/image/tree2.png" alt=""></li>
+<li>인접 리스트, 인접 행렬 두 가지 방법이 있다.</li>
 </ul>
+<p><img src="/image/tree2.png" alt=""></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 인접 리스트로 그래프 구현</span></span><br><span class="line">graph = &#123;<span class="string">'A'</span>: [<span class="string">'B'</span>, <span class="string">'C'</span>],</span><br><span class="line">        <span class="string">'B'</span>: [<span class="string">'A'</span>, <span class="string">'D'</span>],</span><br><span class="line">        <span class="string">'C'</span>: [<span class="string">'A'</span>, <span class="string">'G'</span>, <span class="string">'H'</span>, <span class="string">'I'</span>],</span><br><span class="line">        <span class="string">'D'</span>:[<span class="string">'B'</span>, <span class="string">'E'</span>, <span class="string">'F'</span>],</span><br><span class="line">        <span class="string">'E'</span>:[<span class="string">'D'</span>],</span><br><span class="line">        <span class="string">'F'</span>:[<span class="string">'D'</span>],</span><br><span class="line">        <span class="string">'G'</span>:[<span class="string">'C'</span>],</span><br><span class="line">        <span class="string">'H'</span>:[<span class="string">'C'</span>],</span><br><span class="line">        <span class="string">'I'</span>:[<span class="string">'C'</span>, <span class="string">'J'</span>],</span><br><span class="line">        <span class="string">'J'</span>:[<span class="string">'I'</span>]&#125;</span><br></pre></td></tr></table></figure>
 
 
