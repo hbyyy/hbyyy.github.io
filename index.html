@@ -156,7 +156,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>아카이브<span class="badge">15</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>아카이브<span class="badge">16</span></a>
 
   </li>
   </ul>
@@ -184,6 +184,120 @@
             
 
   <div class="posts-expand">
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://hbyyy.github.io/2020/05/28/gcd-lcm-20200528/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/20190120_184606.jpg">
+      <meta itemprop="name" content="BeomYeong Heo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="hbyyy's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/05/28/gcd-lcm-20200528/" class="post-title-link" itemprop="url">최소공배수와 최대공약수</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-05-28 22:14:50 / Updated at: 22:16:01" itemprop="dateCreated datePublished" datetime="2020-05-28T22:14:50+09:00">2020-05-28</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/" itemprop="url" rel="index">
+                    <span itemprop="name">알고리즘</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/05/28/gcd-lcm-20200528/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/05/28/gcd-lcm-20200528/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p>파이썬으로 최대공약수, 최소공배수 구하기</p>
+</blockquote>
+<h2 id="최대공약수"><a href="#최대공약수" class="headerlink" title="최대공약수"></a>최대공약수</h2><h3 id="최대공약수란"><a href="#최대공약수란" class="headerlink" title="최대공약수란?"></a>최대공약수란?</h3><p> 최대공약수는 0이 아닌 정수들 사이의 공약수 중 <strong>가장 큰</strong> 공약수를 말한다.</p>
+<!-- more --!>
+
+
+### 구현
+
+#### 단순한 계산식 이용
+
+- 0이 아닌 두 정수 M, N 이 있다면, 1부터 둘 중 작은 수까지 나누어 보고, 나눠지는 수 중 가장 큰 수가 최대공약수일 것이다.
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">N, M = <span class="number">100</span>, <span class="number">450</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> num <span class="keyword">in</span> range(<span class="number">1</span>, min(N, M) +<span class="number">1</span>):</span><br><span class="line">    <span class="keyword">if</span> N % num == <span class="number">0</span> <span class="keyword">and</span> M % num == <span class="number">0</span>:</span><br><span class="line">        GCD = num</span><br><span class="line">print(GCD)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="number">50</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>위의 풀이로 계산을 한다면, 시간 복잡도는 <strong>O(N)</strong>이다.</p>
+<h4 id="유클리드-호제법"><a href="#유클리드-호제법" class="headerlink" title="유클리드 호제법"></a>유클리드 호제법</h4><p> 유클리드 호제법은 2개의 자연수의 최대공약수를 구하는 알고리즘이다.</p>
+<h5 id="정의"><a href="#정의" class="headerlink" title="정의"></a>정의</h5><p>2개의 자연수 a, b (a &gt; b)에 대해 a를 b로 나눈 나머지가 r이라고 하면, a와 b의 최대공약수는 b와 r의 최대공약수와 같다. </p>
+<p><strong><code>GCD(a,b) = GCD(b, a % b), (r &gt; 0)일 때</code></strong>  </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 반복문 이용</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">GCD</span><span class="params">(a, b)</span>:</span></span><br><span class="line">    <span class="keyword">while</span> b &gt; <span class="number">0</span>:</span><br><span class="line">        a, b = b, b % a</span><br><span class="line">    <span class="keyword">return</span> a</span><br><span class="line"></span><br><span class="line"><span class="comment"># 재귀 이용</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">GCD</span><span class="params">(a, b)</span>:</span></span><br><span class="line">    r = b % a</span><br><span class="line">    <span class="keyword">if</span> r == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> a</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> GCD(b, r)</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="최소공배수"><a href="#최소공배수" class="headerlink" title="최소공배수"></a>최소공배수</h2><p> 최소공배수는 최대공약수를 이용하여 구할 수 있다.</p>
+<p><strong><code>lcm(a,b) = a*b/gcd(a,b)</code></strong></p>
+<h3 id="구현"><a href="#구현" class="headerlink" title="구현"></a>구현</h3><p>위에서 구현한 gcd 함수를 이용하면 쉽게 구현할 수 있다.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">LCM</span><span class="params">(a, b)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> a * b // GCD(a,b)</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
         
   
   
@@ -1098,104 +1212,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="https://hbyyy.github.io/2020/05/12/%ED%8C%8C%EC%9D%B4%EC%8D%AC%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0%EC%99%80%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98ch1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/20190120_184606.jpg">
-      <meta itemprop="name" content="BeomYeong Heo">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="hbyyy's blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/05/12/%ED%8C%8C%EC%9D%B4%EC%8D%AC%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0%EC%99%80%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98ch1/" class="post-title-link" itemprop="url">파이썬 자료구조와 알고리즘 - 숫자</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-              
-
-              <time title="Post created: 2020-05-12 18:51:56 / Updated at: 18:58:15" itemprop="dateCreated datePublished" datetime="2020-05-12T18:51:56+09:00">2020-05-12</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python/" itemprop="url" rel="index">
-                    <span itemprop="name">Python</span>
-                  </a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2020/05/12/%ED%8C%8C%EC%9D%B4%EC%8D%AC%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0%EC%99%80%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98ch1/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/05/12/파이썬자료구조와알고리즘ch1/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="CH-1-숫자"><a href="#CH-1-숫자" class="headerlink" title="CH 1 : 숫자"></a>CH 1 : 숫자</h1><h2 id="정수"><a href="#정수" class="headerlink" title="정수"></a>정수</h2><ul>
-<li>파이썬에서 정수는 int 로 나타내며, 불변형이다.</li>
-</ul>
-<h2 id="부동소수점"><a href="#부동소수점" class="headerlink" title="부동소수점"></a>부동소수점</h2><ul>
-<li><p>부동소수점은 IEEE 754 표준을 따른다. 파이썬에서 부동소수점은 float로 나타내고, 불변형이다</p>
-<ul>
-<li><p>부동소수점은 이진수로 표현되기 때문에. 함부로 비교하거나 연산하면 안 된다. 예를 들어,</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">In : <span class="number">0.1</span> + <span class="number">0.2</span> == <span class="number">0.3</span></span><br><span class="line">Out: <span class="literal">False</span></span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/05/12/%ED%8C%8C%EC%9D%B4%EC%8D%AC%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0%EC%99%80%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98ch1/#more" rel="contents">
-                더 읽어보기 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1268,7 +1284,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-count">16</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>

@@ -46,20 +46,21 @@
   };
 </script>
 
-  <meta name="description" content="이번 포스트에서는 컬렉션 자료구조인 셋과 딕셔너리에 대해 정리할 것이다. 컬렉션 자료구조는 세 가지 속성을 가진다 멤버십 연산자 : in, 크기 함수 : len, 반복성  셋 셋은 반복 가능, 가변적, 중복 요소 없음, 정렬되지 않음 특성을 가진 데이터 타입이다. 주도 멤버십 테스트, 중복 제거 를 할 때 사용한다.">
+  <meta name="description" content="파이썬으로 최대공약수, 최소공배수 구하기  최대공약수최대공약수란? 최대공약수는 0이 아닌 정수들 사이의 공약수 중 가장 큰 공약수를 말한다.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="python_datastructure_ch3_1_20200519">
-<meta property="og:url" content="https://hbyyy.github.io/2020/05/19/python-datastructure-ch3-1-20200519/index.html">
+<meta property="og:title" content="최소공배수와 최대공약수">
+<meta property="og:url" content="https://hbyyy.github.io/2020/05/28/gcd-lcm-20200528/index.html">
 <meta property="og:site_name" content="hbyyy&#39;s blog">
-<meta property="og:description" content="이번 포스트에서는 컬렉션 자료구조인 셋과 딕셔너리에 대해 정리할 것이다. 컬렉션 자료구조는 세 가지 속성을 가진다 멤버십 연산자 : in, 크기 함수 : len, 반복성  셋 셋은 반복 가능, 가변적, 중복 요소 없음, 정렬되지 않음 특성을 가진 데이터 타입이다. 주도 멤버십 테스트, 중복 제거 를 할 때 사용한다.">
+<meta property="og:description" content="파이썬으로 최대공약수, 최소공배수 구하기  최대공약수최대공약수란? 최대공약수는 0이 아닌 정수들 사이의 공약수 중 가장 큰 공약수를 말한다.">
 <meta property="og:locale" content="ko_KR">
-<meta property="article:published_time" content="2020-05-19T13:44:54.000Z">
-<meta property="article:modified_time" content="2020-05-19T13:45:58.715Z">
+<meta property="article:published_time" content="2020-05-28T13:14:50.000Z">
+<meta property="article:modified_time" content="2020-05-28T13:16:01.657Z">
 <meta property="article:author" content="BeomYeong Heo">
+<meta property="article:tag" content="알고리즘">
 <meta property="article:tag" content="Python">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://hbyyy.github.io/2020/05/19/python-datastructure-ch3-1-20200519/">
+<link rel="canonical" href="https://hbyyy.github.io/2020/05/28/gcd-lcm-20200528/">
 
 
 <script id="page-configurations">
@@ -71,7 +72,7 @@
   };
 </script>
 
-  <title>python_datastructure_ch3_1_20200519 | hbyyy's blog</title>
+  <title>최소공배수와 최대공약수 | hbyyy's blog</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-166358897-1"></script>
     <script>
@@ -193,7 +194,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="ko">
-    <link itemprop="mainEntityOfPage" href="https://hbyyy.github.io/2020/05/19/python-datastructure-ch3-1-20200519/">
+    <link itemprop="mainEntityOfPage" href="https://hbyyy.github.io/2020/05/28/gcd-lcm-20200528/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/uploads/20190120_184606.jpg">
@@ -206,7 +207,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          python_datastructure_ch3_1_20200519
+          최소공배수와 최대공약수
         </h1>
 
         <div class="post-meta">
@@ -217,7 +218,7 @@
               <span class="post-meta-item-text">작성일</span>
               
 
-              <time title="Post created: 2020-05-19 22:44:54 / Updated at: 22:45:58" itemprop="dateCreated datePublished" datetime="2020-05-19T22:44:54+09:00">2020-05-19</time>
+              <time title="Post created: 2020-05-28 22:14:50 / Updated at: 22:16:01" itemprop="dateCreated datePublished" datetime="2020-05-28T22:14:50+09:00">2020-05-28</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -225,8 +226,8 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python/" itemprop="url" rel="index">
-                    <span itemprop="name">Python</span>
+                  <a href="/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/" itemprop="url" rel="index">
+                    <span itemprop="name">알고리즘</span>
                   </a>
                 </span>
             </span>
@@ -240,8 +241,8 @@
       </span>
       <span class="post-meta-item-text">Disqus: </span>
     
-    <a title="disqus" href="/2020/05/19/python-datastructure-ch3-1-20200519/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/05/19/python-datastructure-ch3-1-20200519/" itemprop="commentCount"></span>
+    <a title="disqus" href="/2020/05/28/gcd-lcm-20200528/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/05/28/gcd-lcm-20200528/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -257,72 +258,36 @@
 
       
         <blockquote>
-<p>이번 포스트에서는 컬렉션 자료구조인 셋과 딕셔너리에 대해 정리할 것이다.</p>
-<p>컬렉션 자료구조는 세 가지 속성을 가진다</p>
-<p><strong>멤버십 연산자 : in</strong>, <strong>크기 함수 : len</strong>, <strong>반복성</strong></p>
+<p>파이썬으로 최대공약수, 최소공배수 구하기</p>
 </blockquote>
-<h2 id="셋"><a href="#셋" class="headerlink" title="셋"></a>셋</h2><p> <strong>셋</strong>은 반복 가능, 가변적, 중복 요소 없음, 정렬되지 않음 특성을 가진 데이터 타입이다. 주도 <strong>멤버십 테스트</strong>, <strong>중복 제거</strong> 를 할 때 사용한다.</p>
-<a id="more"></a>
-
-<h3 id="셋-메서드"><a href="#셋-메서드" class="headerlink" title="셋 메서드"></a>셋 메서드</h3><h4 id="add"><a href="#add" class="headerlink" title="add()"></a>add()</h4><p>A.add(x) 는 셋 A에 x가 없을 경우 x를 추가한다.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">s = &#123;<span class="string">"1"</span>, <span class="string">"2"</span>, <span class="string">"3"</span>&#125;</span><br><span class="line">s.add(<span class="string">"4"</span>)</span><br><span class="line">print(s)</span><br><span class="line"><span class="comment"># 셋은 순서가 없다</span></span><br><span class="line">Out : &#123;<span class="string">"1"</span>, <span class="string">"3"</span>, <span class="string">"2"</span>, <span class="string">"4"</span>&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="최대공약수"><a href="#최대공약수" class="headerlink" title="최대공약수"></a>최대공약수</h2><h3 id="최대공약수란"><a href="#최대공약수란" class="headerlink" title="최대공약수란?"></a>최대공약수란?</h3><p> 최대공약수는 0이 아닌 정수들 사이의 공약수 중 <strong>가장 큰</strong> 공약수를 말한다.</p>
+<!-- more --!>
 
 
+### 구현
 
-<h4 id="update-union"><a href="#update-union" class="headerlink" title="update(), union()"></a>update(), union()</h4><ul>
-<li><p>A.update(B) (A |= B)는  셋 A에 셋 B를 추가한다. </p>
-</li>
-<li><p>A.union(x)(A | B) 은 update와 같지만, 연산 결과를 복사본으로 반환한다.</p>
-</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">A = &#123;<span class="string">"1"</span>, <span class="string">"2"</span>&#125;</span><br><span class="line">B = &#123;<span class="string">"3"</span>, <span class="string">"4"</span>&#125;</span><br><span class="line"><span class="comment"># update() 메서드</span></span><br><span class="line">A.update(B)</span><br><span class="line">print(A)</span><br><span class="line">Out : &#123;<span class="string">'1'</span>, <span class="string">'2'</span>, <span class="string">'3'</span>, <span class="string">'4'</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># union() 메서드</span></span><br><span class="line">A = &#123;<span class="string">"1"</span>, <span class="string">"2"</span>&#125;</span><br><span class="line">C = A.union(B)</span><br><span class="line">print(C)</span><br><span class="line">Out : &#123;<span class="string">'1'</span>, <span class="string">'2'</span>, <span class="string">'3'</span>, <span class="string">'4'</span>&#125;</span><br></pre></td></tr></table></figure>
+#### 단순한 계산식 이용
+
+- 0이 아닌 두 정수 M, N 이 있다면, 1부터 둘 중 작은 수까지 나누어 보고, 나눠지는 수 중 가장 큰 수가 최대공약수일 것이다.
 
 
 
-<h4 id="intersection-difference-clear"><a href="#intersection-difference-clear" class="headerlink" title="intersection(), difference(). clear()"></a>intersection(), difference(). clear()</h4><ul>
-<li>A.intersection(B)(A&amp;B) 는 A와 B의 교집합의 복사본을 반환한다.</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">A = &#123;<span class="string">"1"</span>, <span class="string">"2"</span>&#125;</span><br><span class="line">B = &#123;<span class="string">"1"</span>, <span class="string">"3"</span>&#125;</span><br><span class="line">C = A.intersection(B)</span><br><span class="line">print(C)</span><br><span class="line">Out : &#123;<span class="string">'1'</span>&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">N, M = <span class="number">100</span>, <span class="number">450</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> num <span class="keyword">in</span> range(<span class="number">1</span>, min(N, M) +<span class="number">1</span>):</span><br><span class="line">    <span class="keyword">if</span> N % num == <span class="number">0</span> <span class="keyword">and</span> M % num == <span class="number">0</span>:</span><br><span class="line">        GCD = num</span><br><span class="line">print(GCD)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="number">50</span></span><br></pre></td></tr></table></figure>
 
 
 
-<ul>
-<li>A.difference(A-B) 는 A와 B의 차집합의 복사본을 반환한다.</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">A = &#123;<span class="string">"1"</span>, <span class="string">"2"</span>&#125;</span><br><span class="line">B = &#123;<span class="string">"1"</span>, <span class="string">"3"</span>&#125;</span><br><span class="line">C = A.difference(B)</span><br><span class="line">print(C)</span><br><span class="line">Out : &#123;<span class="string">'2'</span>&#125;</span><br></pre></td></tr></table></figure>
+<p>위의 풀이로 계산을 한다면, 시간 복잡도는 <strong>O(N)</strong>이다.</p>
+<h4 id="유클리드-호제법"><a href="#유클리드-호제법" class="headerlink" title="유클리드 호제법"></a>유클리드 호제법</h4><p> 유클리드 호제법은 2개의 자연수의 최대공약수를 구하는 알고리즘이다.</p>
+<h5 id="정의"><a href="#정의" class="headerlink" title="정의"></a>정의</h5><p>2개의 자연수 a, b (a &gt; b)에 대해 a를 b로 나눈 나머지가 r이라고 하면, a와 b의 최대공약수는 b와 r의 최대공약수와 같다. </p>
+<p><strong><code>GCD(a,b) = GCD(b, a % b), (r &gt; 0)일 때</code></strong>  </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 반복문 이용</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">GCD</span><span class="params">(a, b)</span>:</span></span><br><span class="line">    <span class="keyword">while</span> b &gt; <span class="number">0</span>:</span><br><span class="line">        a, b = b, b % a</span><br><span class="line">    <span class="keyword">return</span> a</span><br><span class="line"></span><br><span class="line"><span class="comment"># 재귀 이용</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">GCD</span><span class="params">(a, b)</span>:</span></span><br><span class="line">    r = b % a</span><br><span class="line">    <span class="keyword">if</span> r == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> a</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> GCD(b, r)</span><br></pre></td></tr></table></figure>
 
 
 
-<ul>
-<li>A.clear()는 A의 모든 항목을 제거한다.</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">A = &#123;<span class="string">"1"</span>, <span class="string">"2"</span>&#125;</span><br><span class="line">A.clear()</span><br><span class="line">print(A)</span><br><span class="line">Out : &#123;&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="discard-remove"><a href="#discard-remove" class="headerlink" title="discard(), remove()"></a>discard(), remove()</h4><ul>
-<li>A.discard(x)는 A의 항목 x를 제거한다. 반환값은  항상 None 이다.</li>
-<li>A.remove(x)는 discard와 같지만, x가 A에 없을 때 KeyError를 발생시킨다.</li>
-</ul>
-<h2 id="딕셔너리"><a href="#딕셔너리" class="headerlink" title="딕셔너리"></a>딕셔너리</h2><p>딕셔너리는 해시 테이블로 구현되어 있다. 셋과 마찬가지로  반복 가능, 가변적, 중복 요소 없음, 정렬되지 않음 특성을 가지고 <strong>키와 값</strong>으로 매핑된 항목의 컬렉션이다.</p>
-<blockquote>
-<p>파이썬 3.7부터는 항목의 삽입 순서를 보존한다.</p>
-</blockquote>
-<h3 id="딕셔너리-메서드"><a href="#딕셔너리-메서드" class="headerlink" title="딕셔너리 메서드"></a>딕셔너리 메서드</h3><h4 id="update-get"><a href="#update-get" class="headerlink" title="update(), get()"></a>update(), get()</h4><ul>
-<li><p>A.update(B) 는 딕셔너리 A에 딕셔너리 B를 추가해 준다. 만약 A에 B의 키가 존재한다면, 기존 키의 값을 업데이트</p>
-</li>
-<li><p>A.get(key, default=None) 은 딕셔너리 A에서 key의 값을 반환한다. key가 없다면 default 값을 반환한다</p>
-</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">A = &#123;<span class="number">1</span>:<span class="number">1</span>, <span class="number">2</span>:<span class="number">2</span>, <span class="number">3</span>:<span class="number">3</span>&#125;</span><br><span class="line">print(A.get(<span class="number">1</span>))</span><br><span class="line">Out : <span class="number">1</span></span><br><span class="line">print(A.get(<span class="number">5</span>))</span><br><span class="line">Out : <span class="literal">None</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="pop-popitem"><a href="#pop-popitem" class="headerlink" title="pop(), popitem()"></a>pop(), popitem()</h4><ul>
-<li>A.pop(key) 는 key 항목을 제거한 후 반환한다.</li>
-<li>A.popitem()은 A에서 한개의 항목을 제거한 후 반환한다.</li>
-</ul>
-<h4 id="keys-values-items"><a href="#keys-values-items" class="headerlink" title="keys(), values(), items()"></a>keys(), values(), items()</h4><p>딕셔너리의 항목을 조회한다. 각각 키, 값, 키와 값을 반환하는데, 주로 반복문에서 사용한다. </p>
+<h2 id="최소공배수"><a href="#최소공배수" class="headerlink" title="최소공배수"></a>최소공배수</h2><p> 최소공배수는 최대공약수를 이용하여 구할 수 있다.</p>
+<p><strong><code>lcm(a,b) = a*b/gcd(a,b)</code></strong></p>
+<h3 id="구현"><a href="#구현" class="headerlink" title="구현"></a>구현</h3><p>위에서 구현한 gcd 함수를 이용하면 쉽게 구현할 수 있다.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">LCM</span><span class="params">(a, b)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> a * b // GCD(a,b)</span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -332,6 +297,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
+              <a href="/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/" rel="tag"># 알고리즘</a>
               <a href="/tags/Python/" rel="tag"># Python</a>
           </div>
 
@@ -341,13 +307,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/05/19/TIL-20200519/" rel="prev" title="TIL-20200519">
-      <i class="fa fa-chevron-left"></i> TIL-20200519
+    <a href="/2020/05/22/algo-BFSDFS-20200522/" rel="prev" title="BFS,DFS">
+      <i class="fa fa-chevron-left"></i> BFS,DFS
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/05/22/algo-BFSDFS-20200522/" rel="next" title="BFS,DFS">
-      BFS,DFS <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -414,7 +377,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#셋"><span class="nav-number">1.</span> <span class="nav-text">셋</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#셋-메서드"><span class="nav-number">1.1.</span> <span class="nav-text">셋 메서드</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#add"><span class="nav-number">1.1.1.</span> <span class="nav-text">add()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#update-union"><span class="nav-number">1.1.2.</span> <span class="nav-text">update(), union()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#intersection-difference-clear"><span class="nav-number">1.1.3.</span> <span class="nav-text">intersection(), difference(). clear()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#discard-remove"><span class="nav-number">1.1.4.</span> <span class="nav-text">discard(), remove()</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#딕셔너리"><span class="nav-number">2.</span> <span class="nav-text">딕셔너리</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#딕셔너리-메서드"><span class="nav-number">2.1.</span> <span class="nav-text">딕셔너리 메서드</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#update-get"><span class="nav-number">2.1.1.</span> <span class="nav-text">update(), get()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#pop-popitem"><span class="nav-number">2.1.2.</span> <span class="nav-text">pop(), popitem()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#keys-values-items"><span class="nav-number">2.1.3.</span> <span class="nav-text">keys(), values(), items()</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#최대공약수"><span class="nav-number">1.</span> <span class="nav-text">최대공약수</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#최대공약수란"><span class="nav-number">1.1.</span> <span class="nav-text">최대공약수란?</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -551,9 +514,9 @@
 </script>
 <script>
   var disqus_config = function() {
-    this.page.url = "https://hbyyy.github.io/2020/05/19/python-datastructure-ch3-1-20200519/";
-    this.page.identifier = "2020/05/19/python-datastructure-ch3-1-20200519/";
-    this.page.title = "python_datastructure_ch3_1_20200519";
+    this.page.url = "https://hbyyy.github.io/2020/05/28/gcd-lcm-20200528/";
+    this.page.identifier = "2020/05/28/gcd-lcm-20200528/";
+    this.page.title = "최소공배수와 최대공약수";
     };
   NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
     if (window.DISQUS) {
