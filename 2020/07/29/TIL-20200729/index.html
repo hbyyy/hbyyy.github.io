@@ -46,15 +46,20 @@
   };
 </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="hbyyy&#39;s blog">
-<meta property="og:url" content="https://hbyyy.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/index.html">
+  <meta name="description" content="docker-compose 이용해 django server와 postgres를 docker로 실행할 수 있도록 적용해봄 celery 이용해 email 전송하는 부분 구현중, celery 어렵다…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TIL-20200729">
+<meta property="og:url" content="https://hbyyy.github.io/2020/07/29/TIL-20200729/index.html">
 <meta property="og:site_name" content="hbyyy&#39;s blog">
+<meta property="og:description" content="docker-compose 이용해 django server와 postgres를 docker로 실행할 수 있도록 적용해봄 celery 이용해 email 전송하는 부분 구현중, celery 어렵다…">
 <meta property="og:locale" content="ko_KR">
+<meta property="article:published_time" content="2020-07-29T11:32:23.000Z">
+<meta property="article:modified_time" content="2020-07-29T11:34:22.072Z">
 <meta property="article:author" content="BeomYeong Heo">
+<meta property="article:tag" content="TIL">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://hbyyy.github.io/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/">
+<link rel="canonical" href="https://hbyyy.github.io/2020/07/29/TIL-20200729/">
 
 
 <script id="page-configurations">
@@ -62,11 +67,11 @@
   CONFIG.page = {
     sidebar: "",
     isHome: false,
-    isPost: false
+    isPost: true
   };
 </script>
 
-  <title>태그: 알고리즘 | hbyyy's blog</title>
+  <title>TIL-20200729 | hbyyy's blog</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-166358897-1"></script>
     <script>
@@ -183,74 +188,120 @@
           <div class="content">
             
 
+  <div class="posts-expand">
+      
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <h1 class="collection-header">알고리즘
-          <small>태그</small>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://hbyyy.github.io/2020/07/29/TIL-20200729/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/20190120_184606.jpg">
+      <meta itemprop="name" content="BeomYeong Heo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="hbyyy's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          TIL-20200729
         </h1>
-      </div>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-07-29 20:32:23 / Updated at: 20:34:22" itemprop="dateCreated datePublished" datetime="2020-07-29T20:32:23+09:00">2020-07-29</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/TIL/" itemprop="url" rel="index">
+                    <span itemprop="name">TIL</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/07/29/TIL-20200729/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/07/29/TIL-20200729/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <h1 class="collection-header">2020</h1>
-    </div>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-05-28T22:14:50+09:00"
-              content="2020-05-28">
-          05-28
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/2020/05/28/gcd-lcm-20200528/" itemprop="url">
-            <span itemprop="name">최소공배수와 최대공약수</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-05-22T17:30:51+09:00"
-              content="2020-05-22">
-          05-22
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/2020/05/22/algo-BFSDFS-20200522/" itemprop="url">
-            <span itemprop="name">BFS,DFS</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
+        <ol>
+<li>docker-compose 이용해 django server와 postgres를 docker로 실행할 수 있도록 적용해봄</li>
+<li>celery 이용해 email 전송하는 부분 구현중, celery 어렵다…</li>
+</ol>
 
     </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/TIL/" rel="tag"># TIL</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/07/11/YAML-20200711/" rel="prev" title="YAML 정리">
+      <i class="fa fa-chevron-left"></i> YAML 정리
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
   </div>
-  
-  
-  
-
-  
-
 
 
           </div>
           
+    
+  <div class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -430,6 +481,26 @@
   }
   // defer loading until the whole page loading is completed
   window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://hbyyy.github.io/2020/07/29/TIL-20200729/";
+    this.page.identifier = "2020/07/29/TIL-20200729/";
+    this.page.title = "TIL-20200729";
+    };
+  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: disqus_config
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://hbyyy.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  });
 </script>
 
 </body>

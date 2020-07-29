@@ -9,8 +9,32 @@
     <atom:link href="/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description></description>
-    <pubDate>Sat, 11 Jul 2020 06:07:59 GMT</pubDate>
+    <pubDate>Wed, 29 Jul 2020 11:34:22 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>TIL-20200729</title>
+      <link>https://hbyyy.github.io/2020/07/29/TIL-20200729/</link>
+      <guid>https://hbyyy.github.io/2020/07/29/TIL-20200729/</guid>
+      <pubDate>Wed, 29 Jul 2020 11:32:23 GMT</pubDate>
+      <description>
+      
+        
+        
+          &lt;ol&gt;
+&lt;li&gt;docker-compose 이용해 django server와 postgres를 docker로 실행할 수 있도록 적용해봄&lt;/li&gt;
+&lt;li&gt;celery 이용해 email 전송하는 부분 구현중, celery 어렵다…&lt;/li&gt;
+&lt;/ol&gt;
+
+        
+      
+      </description>
+      
+      
+      <content:encoded><![CDATA[<ol><li>docker-compose 이용해 django server와 postgres를 docker로 실행할 수 있도록 적용해봄</li><li>celery 이용해 email 전송하는 부분 구현중, celery 어렵다…</li></ol>]]></content:encoded>
+      
+      <comments>https://hbyyy.github.io/2020/07/29/TIL-20200729/#disqus_thread</comments>
+    </item>
     
     <item>
       <title>YAML 정리</title>
@@ -229,34 +253,6 @@
       <content:encoded><![CDATA[<ol><li>파이썬 자료구조와 알고리즘<ul><li>CH 7 연습문제 풀이  (반정도 완료)</li><li>파이썬 컬렉션 자료구조 (셋, 딕셔너리) 복습, 정리</li></ul></li></ol>]]></content:encoded>
       
       <comments>https://hbyyy.github.io/2020/05/19/TIL-20200519/#disqus_thread</comments>
-    </item>
-    
-    <item>
-      <title>TIL-20200518</title>
-      <link>https://hbyyy.github.io/2020/05/18/TIL-20200518/</link>
-      <guid>https://hbyyy.github.io/2020/05/18/TIL-20200518/</guid>
-      <pubDate>Mon, 18 May 2020 13:14:57 GMT</pubDate>
-      <description>
-      
-        
-        
-          &lt;ol&gt;
-&lt;li&gt;&lt;p&gt;파이썬 자료구조와 알고리즘&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;CH 7 뒷부분 완료 (우선순위 큐, 연결 리스트)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Github action&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;develop 브랜치에 커밋될 때에도
-        
-      
-      </description>
-      
-      
-      <content:encoded><![CDATA[<ol><li><p>파이썬 자료구조와 알고리즘</p><ul><li>CH 7 뒷부분 완료 (우선순위 큐, 연결 리스트)</li></ul></li><li><p>Github action</p><ul><li>develop 브랜치에 커밋될 때에도 실행되도록 수정</li></ul></li><li><p>Netflex project</p><ul><li>base.py에서 secretmanaget 불러오는 코드 간결하게 수정<ul><li>aws credential 파일에 변경사항 있음!</li></ul></li></ul></li></ol>]]></content:encoded>
-      
-      <comments>https://hbyyy.github.io/2020/05/18/TIL-20200518/#disqus_thread</comments>
     </item>
     
   </channel>
