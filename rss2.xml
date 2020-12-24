@@ -9,8 +9,29 @@
     <atom:link href="/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description></description>
-    <pubDate>Wed, 29 Jul 2020 11:34:22 GMT</pubDate>
+    <pubDate>Thu, 24 Dec 2020 16:57:41 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>Celery TIPS - Django 사용 시 namespace</title>
+      <link>https://hbyyy.github.io/2020/12/25/Celery-namespace/</link>
+      <guid>https://hbyyy.github.io/2020/12/25/Celery-namespace/</guid>
+      <pubDate>Thu, 24 Dec 2020 16:48:01 GMT</pubDate>
+      <description>
+      
+        &lt;h2 id=&quot;Celery-namespace&quot;&gt;&lt;a href=&quot;#Celery-namespace&quot; class=&quot;headerlink&quot; title=&quot;Celery namespace&quot;&gt;&lt;/a&gt;Celery namespace&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;장고에서 샐러리 사용시, celery.py에 다음과 같은 코드를 작성해 줘야 한다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;proj/celery.py&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;os.environ.setdefault(&lt;span class=&quot;string&quot;&gt;&#39;DJANGO_SETTINGS_MODULE&#39;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&#39;config.settings&#39;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;app = Celery(&lt;span class=&quot;string&quot;&gt;&#39;config&#39;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;app.config_from_object(&lt;span class=&quot;string&quot;&gt;&#39;django.conf:settings&#39;&lt;/span&gt;, namespace=&lt;span class=&quot;string&quot;&gt;&#39;CELERY&#39;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+      
+      </description>
+      
+      
+      <content:encoded><![CDATA[<h2 id="Celery-namespace"><a href="#Celery-namespace" class="headerlink" title="Celery namespace"></a>Celery namespace</h2><ul><li>장고에서 샐러리 사용시, celery.py에 다음과 같은 코드를 작성해 줘야 한다.</li></ul><p><strong><code>proj/celery.py</code></strong></p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">os.environ.setdefault(<span class="string">'DJANGO_SETTINGS_MODULE'</span>, <span class="string">'config.settings'</span>)</span><br><span class="line">app = Celery(<span class="string">'config'</span>)</span><br><span class="line">app.config_from_object(<span class="string">'django.conf:settings'</span>, namespace=<span class="string">'CELERY'</span>)</span><br></pre></td></tr></table></figure><a id="more"></a><h3 id="config-from-object-의-namespace"><a href="#config-from-object-의-namespace" class="headerlink" title="config_from_object 의 namespace"></a>config_from_object 의 namespace</h3><ul><li><p>namespace를 CELERY로 붇이면, 모든 샐러리 세팅 앞에 “CELERY_”를 붙여야 한다!</p></li><li><p>예를 들어, <a href="https://docs.celeryproject.org/en/latest/userguide/configuration.html#task-always-eager" target="_blank" rel="noopener">task-always-eager</a> 세팅이면, 장고 세팅 파일에서는 <strong><code>CELERY_TASK_ALWAYS_EAGER = ???</code></strong>로 사용해야 한다!</p></li><li><p>namespace는 값을 넣지 않아도 되지만, 겹치는 세팅이 있을 수도 있기 때문에 넣어 주는게 좋다.</p></li></ul>]]></content:encoded>
+      
+      <comments>https://hbyyy.github.io/2020/12/25/Celery-namespace/#disqus_thread</comments>
+    </item>
     
     <item>
       <title>TIL-20200729</title>
@@ -226,33 +247,6 @@
       <content:encoded><![CDATA[<blockquote><p>이번 포스트에서는 컬렉션 자료구조인 셋과 딕셔너리에 대해 정리할 것이다.</p><p>컬렉션 자료구조는 세 가지 속성을 가진다</p><p><strong>멤버십 연산자 : in</strong>, <strong>크기 함수 : len</strong>, <strong>반복성</strong></p></blockquote><h2 id="셋"><a href="#셋" class="headerlink" title="셋"></a>셋</h2><p> <strong>셋</strong>은 반복 가능, 가변적, 중복 요소 없음, 정렬되지 않음 특성을 가진 데이터 타입이다. 주도 <strong>멤버십 테스트</strong>, <strong>중복 제거</strong> 를 할 때 사용한다.</p><a id="more"></a><h3 id="셋-메서드"><a href="#셋-메서드" class="headerlink" title="셋 메서드"></a>셋 메서드</h3><h4 id="add"><a href="#add" class="headerlink" title="add()"></a>add()</h4><p>A.add(x) 는 셋 A에 x가 없을 경우 x를 추가한다.</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">s = &#123;<span class="string">"1"</span>, <span class="string">"2"</span>, <span class="string">"3"</span>&#125;</span><br><span class="line">s.add(<span class="string">"4"</span>)</span><br><span class="line">print(s)</span><br><span class="line"><span class="comment"># 셋은 순서가 없다</span></span><br><span class="line">Out : &#123;<span class="string">"1"</span>, <span class="string">"3"</span>, <span class="string">"2"</span>, <span class="string">"4"</span>&#125;</span><br></pre></td></tr></table></figure><h4 id="update-union"><a href="#update-union" class="headerlink" title="update(), union()"></a>update(), union()</h4><ul><li><p>A.update(B) (A |= B)는  셋 A에 셋 B를 추가한다. </p></li><li><p>A.union(x)(A | B) 은 update와 같지만, 연산 결과를 복사본으로 반환한다.</p></li></ul><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">A = &#123;<span class="string">"1"</span>, <span class="string">"2"</span>&#125;</span><br><span class="line">B = &#123;<span class="string">"3"</span>, <span class="string">"4"</span>&#125;</span><br><span class="line"><span class="comment"># update() 메서드</span></span><br><span class="line">A.update(B)</span><br><span class="line">print(A)</span><br><span class="line">Out : &#123;<span class="string">'1'</span>, <span class="string">'2'</span>, <span class="string">'3'</span>, <span class="string">'4'</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># union() 메서드</span></span><br><span class="line">A = &#123;<span class="string">"1"</span>, <span class="string">"2"</span>&#125;</span><br><span class="line">C = A.union(B)</span><br><span class="line">print(C)</span><br><span class="line">Out : &#123;<span class="string">'1'</span>, <span class="string">'2'</span>, <span class="string">'3'</span>, <span class="string">'4'</span>&#125;</span><br></pre></td></tr></table></figure><h4 id="intersection-difference-clear"><a href="#intersection-difference-clear" class="headerlink" title="intersection(), difference(). clear()"></a>intersection(), difference(). clear()</h4><ul><li>A.intersection(B)(A&amp;B) 는 A와 B의 교집합의 복사본을 반환한다.</li></ul><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">A = &#123;<span class="string">"1"</span>, <span class="string">"2"</span>&#125;</span><br><span class="line">B = &#123;<span class="string">"1"</span>, <span class="string">"3"</span>&#125;</span><br><span class="line">C = A.intersection(B)</span><br><span class="line">print(C)</span><br><span class="line">Out : &#123;<span class="string">'1'</span>&#125;</span><br></pre></td></tr></table></figure><ul><li>A.difference(A-B) 는 A와 B의 차집합의 복사본을 반환한다.</li></ul><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">A = &#123;<span class="string">"1"</span>, <span class="string">"2"</span>&#125;</span><br><span class="line">B = &#123;<span class="string">"1"</span>, <span class="string">"3"</span>&#125;</span><br><span class="line">C = A.difference(B)</span><br><span class="line">print(C)</span><br><span class="line">Out : &#123;<span class="string">'2'</span>&#125;</span><br></pre></td></tr></table></figure><ul><li>A.clear()는 A의 모든 항목을 제거한다.</li></ul><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">A = &#123;<span class="string">"1"</span>, <span class="string">"2"</span>&#125;</span><br><span class="line">A.clear()</span><br><span class="line">print(A)</span><br><span class="line">Out : &#123;&#125;</span><br></pre></td></tr></table></figure><h4 id="discard-remove"><a href="#discard-remove" class="headerlink" title="discard(), remove()"></a>discard(), remove()</h4><ul><li>A.discard(x)는 A의 항목 x를 제거한다. 반환값은  항상 None 이다.</li><li>A.remove(x)는 discard와 같지만, x가 A에 없을 때 KeyError를 발생시킨다.</li></ul><h2 id="딕셔너리"><a href="#딕셔너리" class="headerlink" title="딕셔너리"></a>딕셔너리</h2><p>딕셔너리는 해시 테이블로 구현되어 있다. 셋과 마찬가지로  반복 가능, 가변적, 중복 요소 없음, 정렬되지 않음 특성을 가지고 <strong>키와 값</strong>으로 매핑된 항목의 컬렉션이다.</p><blockquote><p>파이썬 3.7부터는 항목의 삽입 순서를 보존한다.</p></blockquote><h3 id="딕셔너리-메서드"><a href="#딕셔너리-메서드" class="headerlink" title="딕셔너리 메서드"></a>딕셔너리 메서드</h3><h4 id="update-get"><a href="#update-get" class="headerlink" title="update(), get()"></a>update(), get()</h4><ul><li><p>A.update(B) 는 딕셔너리 A에 딕셔너리 B를 추가해 준다. 만약 A에 B의 키가 존재한다면, 기존 키의 값을 업데이트</p></li><li><p>A.get(key, default=None) 은 딕셔너리 A에서 key의 값을 반환한다. key가 없다면 default 값을 반환한다</p></li></ul><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">A = &#123;<span class="number">1</span>:<span class="number">1</span>, <span class="number">2</span>:<span class="number">2</span>, <span class="number">3</span>:<span class="number">3</span>&#125;</span><br><span class="line">print(A.get(<span class="number">1</span>))</span><br><span class="line">Out : <span class="number">1</span></span><br><span class="line">print(A.get(<span class="number">5</span>))</span><br><span class="line">Out : <span class="literal">None</span></span><br></pre></td></tr></table></figure><h4 id="pop-popitem"><a href="#pop-popitem" class="headerlink" title="pop(), popitem()"></a>pop(), popitem()</h4><ul><li>A.pop(key) 는 key 항목을 제거한 후 반환한다.</li><li>A.popitem()은 A에서 한개의 항목을 제거한 후 반환한다.</li></ul><h4 id="keys-values-items"><a href="#keys-values-items" class="headerlink" title="keys(), values(), items()"></a>keys(), values(), items()</h4><p>딕셔너리의 항목을 조회한다. 각각 키, 값, 키와 값을 반환하는데, 주로 반복문에서 사용한다. </p>]]></content:encoded>
       
       <comments>https://hbyyy.github.io/2020/05/19/python-datastructure-ch3-1-20200519/#disqus_thread</comments>
-    </item>
-    
-    <item>
-      <title>TIL-20200519</title>
-      <link>https://hbyyy.github.io/2020/05/19/TIL-20200519/</link>
-      <guid>https://hbyyy.github.io/2020/05/19/TIL-20200519/</guid>
-      <pubDate>Tue, 19 May 2020 13:42:58 GMT</pubDate>
-      <description>
-      
-        
-        
-          &lt;ol&gt;
-&lt;li&gt;파이썬 자료구조와 알고리즘&lt;ul&gt;
-&lt;li&gt;CH 7 연습문제 풀이  (반정도 완료)&lt;/li&gt;
-&lt;li&gt;파이썬 컬렉션 자료구조 (셋, 딕셔너리) 복습, 정리&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-
-        
-      
-      </description>
-      
-      
-      <content:encoded><![CDATA[<ol><li>파이썬 자료구조와 알고리즘<ul><li>CH 7 연습문제 풀이  (반정도 완료)</li><li>파이썬 컬렉션 자료구조 (셋, 딕셔너리) 복습, 정리</li></ul></li></ol>]]></content:encoded>
-      
-      <comments>https://hbyyy.github.io/2020/05/19/TIL-20200519/#disqus_thread</comments>
     </item>
     
   </channel>
